@@ -46,6 +46,9 @@ async def ask_assistant(request: AssistantRequest):
         return response
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+    # --- DOSYA SONU ---
+from backend.services.rfp_controller import RFPController
+rfp_router = RFPController.as_fastapi_router()
 
 @router.post("/chain-assistants")
 async def chain_assistants(request: ChainAssistantRequest):
