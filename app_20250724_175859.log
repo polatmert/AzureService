@@ -1,0 +1,19 @@
+2025-07-24 17:58:59,327 - rfp_app - INFO - Uygulama başlatılıyor... Log dosyası: app_20250724_175859.log
+2025-07-24 17:59:13,700 - rfp_app.openai - INFO - Azure OpenAI API bağlantısı kuruldu. Model: gpt-4.1, Endpoint: https://seraph-openapi.openai.azure.com/
+2025-07-24 17:59:15,360 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/assistants?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-24 17:59:15,369 - rfp_app.openai - INFO - Mevcut Assistant kullanılacak: asst_vbaEyelIh7J9g4YhXYXYHIWt
+2025-07-24 17:59:15,369 - rfp_app.openai - INFO - Assistant adı: Gereksinim Analizi
+2025-07-24 17:59:15,664 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/assistants?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-24 17:59:15,666 - rfp_app.openai - INFO - 2 Assistant bulundu
+2025-07-24 17:59:25,349 - rfp_app.openai - INFO - Azure OpenAI API bağlantısı kuruldu. Model: gpt-4.1, Endpoint: https://seraph-openapi.openai.azure.com/
+2025-07-24 17:59:25,730 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/assistants?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-24 17:59:25,731 - rfp_app.openai - INFO - Mevcut Assistant kullanılacak: asst_vbaEyelIh7J9g4YhXYXYHIWt
+2025-07-24 17:59:25,732 - rfp_app.openai - INFO - Assistant adı: Gereksinim Analizi
+2025-07-24 17:59:25,878 - httpx - INFO - HTTP Request: POST https://seraph-openapi.openai.azure.com/openai/assistants?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-24 17:59:25,880 - rfp_app.openai - INFO - Yeni Assistant oluşturuldu: asst_z8tFD3Bf3I7hKjwLQZNvBJDD
+2025-07-24 17:59:46,452 - rfp_app.openai - INFO - Azure OpenAI API bağlantısı kuruldu. Model: gpt-4.1, Endpoint: https://seraph-openapi.openai.azure.com/
+2025-07-24 17:59:47,904 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/assistants?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-24 17:59:47,907 - rfp_app.openai - INFO - Mevcut Assistant kullanılacak: asst_z8tFD3Bf3I7hKjwLQZNvBJDD
+2025-07-24 17:59:47,907 - rfp_app.openai - INFO - Assistant adı: Test Assistant
+2025-07-24 17:59:48,083 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/assistants?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-24 17:59:48,085 - rfp_app.openai - INFO - 3 Assistant bulundu

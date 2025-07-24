@@ -1,0 +1,11 @@
+2025-07-24 18:10:27,223 - rfp_app - INFO - Uygulama başlatılıyor... Log dosyası: app_20250724_181027.log
+2025-07-24 18:10:27,346 - rfp_app - INFO - Uygulama 8050 portunda başlatılıyor...
+2025-07-24 18:10:47,530 - rfp_app - INFO - Ana sayfa isteği alındı
+2025-07-24 18:10:52,808 - rfp_app - INFO - Ana sayfa isteği alındı
+2025-07-24 18:10:54,993 - rfp_app - INFO - Ana sayfa isteği alındı
+2025-07-24 18:11:04,088 - rfp_app.openai - INFO - Azure OpenAI API bağlantısı kuruldu. Model: gpt-4.1, Endpoint: https://seraph-openapi.openai.azure.com/
+2025-07-24 18:11:05,162 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/assistants?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-24 18:11:05,166 - rfp_app.openai - INFO - Mevcut Assistant kullanılacak: asst_z8tFD3Bf3I7hKjwLQZNvBJDD
+2025-07-24 18:11:05,166 - rfp_app.openai - INFO - Assistant adı: Test Assistant
+2025-07-24 18:11:05,357 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/assistants?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-24 18:11:05,359 - rfp_app.openai - INFO - 3 Assistant bulundu
