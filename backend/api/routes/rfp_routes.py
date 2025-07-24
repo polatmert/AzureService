@@ -1,3 +1,4 @@
+from annotated_types import doc
 from fastapi import APIRouter, HTTPException, Body, Depends, Response
 from typing import Dict, Optional
 from pydantic import BaseModel
@@ -9,10 +10,10 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.lib.units import inch
 from docx import Document
-
+from backend.api.routes.global_storage import global_storage
 from backend.services.openai_service import OpenAIService
 from backend.services.pdf_service import PDFService
-
+openai_service = OpenAIService()
 project_proposal_schema = """
 {
   "name": "generate_project_proposal",
@@ -116,6 +117,10 @@ class ChainAssistantRequest(BaseModel):
     first_assistant_id: str = "asst_vbaEyelIh7J9g4YhXYXYHIWt"
     second_assistant_id: str = "asst_agqWgdJaUkdGDqkLJWAgRMOl"
 
+
+
+
+
 router = APIRouter(
     prefix="/rfp",
     tags=["rfp"],
@@ -149,7 +154,7 @@ async def chain_assistants(request: ChainAssistantRequest):
 
     try:
         # OpenAI servisini başlat
-        openai_service = OpenAIService()
+        
         
         # İlk asistana istek gönder
         first_response = await openai_service.use_assistant(
@@ -171,11 +176,10 @@ async def chain_assistants(request: ChainAssistantRequest):
             assistant_id=request.second_assistant_id
         )
         json_string = second_response.get("response", "")  # örneğin yukarıdaki gibi gelen içerik
-        
+        global_storage.set_second_response(second_response.get("response", ""))
+
         # Belgeyi oluştur
-        json_to_docx(json_string, "softwareproposal2.docx")
         json_to_docx2(json_string, "softwareproposal2.docx")
-        generate_docx_from_json(json_string, "softwareproposal1.docx")
 
         # Sonuçları birleştir
         return {
@@ -188,6 +192,9 @@ async def chain_assistants(request: ChainAssistantRequest):
                 "response": second_response.get("response", "")
             },
             "original_prompt": request.prompt
+
+
+            #Bu noktada tekrar n tane sözleşme inputu alacağız 
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -215,10 +222,17 @@ async def chain_assistants_pdf(request: ChainAssistantRequest):
         
         # İkinci asistana ilk asistanın yanıtını gönder
         second_response = await openai_service.use_assistant(
-            prompt=first_assistant_output,
+            prompt=first_assistant_output + f"Bir yanıt çıktısı almak için {project_proposal_schema} json formatını kullanın. "
+            "Çıktı, söz konusu işlev için tanımlanan JSON yapısıyla eşleşmelidir. Tüm json alanlarını kullanın."
+            "Yalnızca geçerli JSON argümanlarını döndürün. direkt JSON şeklinde dön string dönme",
             assistant_id=request.second_assistant_id
         )
-        
+        json_string = second_response.get("response", "")  # örneğin yukarıdaki gibi gelen içerik
+        global_storage.set_second_response(second_response.get("response", ""))
+
+        # Belgeyi oluştur
+
+       
         second_assistant_output = second_response.get("response", "")
         
         # PDF oluştur
@@ -272,17 +286,21 @@ async def chain_assistants_pdf(request: ChainAssistantRequest):
                 y_position = 10*inch
         
         p.save()
-        
+        docx_response = json_to_docx2(json_string, "softwareproposal2.docx")
+
         buffer.seek(0)
-        
+        buffer_docx = io.BytesIO()
+        docx_response.save(buffer_docx)
+        buffer_docx.seek(0)
+
         # PDF dosyasını döndür
         return Response(
-            content=buffer.getvalue(),
-            media_type="application/pdf",
+            content=buffer_docx.getvalue(),
+            media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
             headers={
-                "Content-Disposition": f"attachment; filename=assistant_responses.pdf"
-            }
-        )
+            "Content-Disposition": f"attachment; filename=proposal_{datetime.now().strftime('%Y%m%d_%H%M%S')}.docx"
+        }
+    )
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -382,19 +400,9 @@ async def create_assistant(name: str = "RFP ve Sözleşme Asistanı"):
     
 
 
-def download_blob(blob_name, download_path):
-    connect_str = os.environ["AZURE_STORAGE_CONNECTION_STRING"]
-    blob_service_client = BlobServiceClient.from_connection_string(connect_str)
-    container_client = blob_service_client.get_container_client("contracts")
-
-    blob_client = container_client.get_blob_client(blob_name)
-
-    with open(download_path, "wb") as download_file:
-        download_file.write(blob_client.download_blob().readall())
-
 import json
 
-def json_to_docx(json_string, output_path):
+def json_to_docx(json_string, output_path) -> Document:
 
     
     # JSON string'teki kaçış karakterlerini düzelt
@@ -441,6 +449,7 @@ def json_to_docx(json_string, output_path):
     doc.add_paragraph(f"Telefon: {contact['phone']}")
 
     doc.save(output_path)
+    return doc 
     print(f"✅ DOCX dosyası oluşturuldu: {output_path}")
 
 
@@ -448,7 +457,7 @@ from docx import Document
 from docx.shared import Pt
 from docx.enum.text import WD_PARAGRAPH_ALIGNMENT
 
-def json_to_docx2(json_data2: dict, filename: str = "project_proposal.docx"): #ÇALIŞAN METOD
+def json_to_docx2(json_data2: dict, filename: str = "project_proposal.docx") -> Document:  #ÇALIŞAN METOD
     doc = Document()
     json_data = json.loads(json_data2)  # Asistan JSON döndürdüğü için doğrudan parse edilebilir
 
@@ -510,7 +519,7 @@ def json_to_docx2(json_data2: dict, filename: str = "project_proposal.docx"): #�
     # Kaydet
     doc.save(filename)
     print(f"✓ Kaydedildi: {filename}")
-
+    return doc
 
 from jinja2 import Template
 from html2docx import html2docx
@@ -536,3 +545,43 @@ if __name__ == "__main__":
         json_data = json.load(f)
 
     generate_docx_from_json(json_data, "template.html", "rfp_output.docx")
+
+"""
+@router.post("/compare-documents")
+async def chain_assistants(request: ChainAssistantRequest): 
+    # Bu noktada tekrar n tane sözleşme inputu alacağız
+    # n kere 3. asistanı çağıracağız
+    # 3. asistan fayda zarar analizi yapacak ve kaydedecek 
+
+"""
+
+third_assistant_id: str = "asst_agqWgdJaUkdGDqkLJWAgRMOl"
+
+third_assistant_prompt: str = "" #bu asistant 3 kere çağırılacak bizim önceki 
+#çıktıya göre bunun kullanılması neden faydalı neden zararlı. Ek olarak bütçe zaman teknoloji analizi yapacak
+
+async def setup_third_assistant(request: ChainAssistantRequest):
+    third_response = await openai_service.use_assistant(
+                prompt=request.prompt + f"Bu sözelşmeyi önceden oluşturduğum RFD ile karşılaştır. Sektör standarlarındaki uygunluğuna göre ",
+                assistant_id=request.third_assistant_id
+            )
+    
+
+
+    global_storage.append_json_response(request.prompt,third_response.get("response", ""))
+
+
+fourth_assistant_id: str = "asst_agqWgdJaUkdGDqkLJWAgRMOl"
+
+fourth_assistant_prompt: str = "" #Bu asistan 3 sözleşmenin verilerini alacak ve bunları karşılaştıracak. aralarından 1 tane seçecek
+#ve bu sözleşmeyi öneri olarak verecek.
+
+async def setup_fourth_assistant(request: ChainAssistantRequest):
+
+    best_entry = global_storage.get_highest_scored_json()
+    fourth_response = await openai_service.use_assistant(
+                prompt=request.prompt + f"{global_storage.get_all_json_responses()} bununla benim için bir sözleşme oluştur",
+                assistant_id=request.fourth_assistant_id
+            )
+
+    
