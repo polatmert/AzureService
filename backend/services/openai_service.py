@@ -98,30 +98,6 @@ class OpenAIService:
         # Asistan ID'sini belirle
         assistant_id = assistant_id or self.assistant_id
         
-        # Eğer assistant_id yoksa direkt chat completion kullan
-        if not assistant_id:
-            logger.info("Assistant ID bulunamadı, chat completion API kullanılıyor")
-            try:
-                response = await self.client.chat.completions.create(
-                    model=self.model,
-                    messages=[
-                        {"role": "system", "content": "Sen bir RFP ve sözleşme uzmanısın. Dokümanları analiz etme, risk değerlendirme, şablon oluşturma konularında uzmansın. Türkçe yanıt ver."},
-                        {"role": "user", "content": prompt}
-                    ],
-                    temperature=0.7,
-                    max_tokens=4000
-                )
-                
-                return {
-                    "response": response.choices[0].message.content,
-                    "method": "chat_completion",
-                    "model": response.model,
-                    "tokens": response.usage.total_tokens
-                }
-            except Exception as e:
-                logger.error(f"Chat completion API hatası: {e}")
-                return {"error": f"Chat completion API hatası: {str(e)}"}
-        
         try:
             logger.info(f"Azure OpenAI Assistant API'ye istek gönderiliyor... Assistant ID: {assistant_id}")
             
@@ -142,7 +118,7 @@ class OpenAIService:
                 thread_id=thread.id,
                 assistant_id=assistant_id
             )
-            logger.info(f"Assistant çalıştırıldı: {run.id}")
+            logger.info(f"Assistant çalıştırıldı: {assistant_id}")
             
             # Run'ın tamamlanmasını bekle
             while run.status in ['queued', 'in_progress', 'cancelling']:

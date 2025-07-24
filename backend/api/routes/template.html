@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Request for Proposal</title>
+</head>
+
+<body>
+    <h1>Request for Proposal</h1>
+
+    <h2>RFP: {{ project_name }}</h2>
+    <p><strong>Proposal Due By:</strong> {{ proposal_due_by }}</p>
+    <p><strong>{{ company_name }}</strong></p>
+
+    <h3>Project Overview:</h3>
+    <p>{{ project_overview }}</p>
+
+    <h3>Project Goals:</h3>
+    <ul>
+        {% for goal in project_goals %}
+        <li><strong>{{ goal }}</strong></li>
+        {% endfor %}
+    </ul>
+
+    <h3>Scope of Work:</h3>
+    <p>{{ scope_of_work }}</p>
+
+    <h3>Current Roadblocks and Barriers to Success</h3>
+    <ul>
+        {% for rb in roadblocks %}
+        <li><strong>{{ rb }}</strong></li>
+        {% endfor %}
+    </ul>
+
+    <h3>Evaluation Metrics and Criteria</h3>
+    <ul>
+        {% for c in evaluation_criteria %}
+        <li><strong>{{ c }}</strong></li>
+        {% endfor %}
+    </ul>
+
+    <h3>Submission Requirements</h3>
+    <ul>
+        {% for r in submission_requirements %}
+        <li><strong>{{ r }}</strong></li>
+        {% endfor %}
+    </ul>
+
+    <p><strong>Project Due By:</strong> {{ project_due_by }}</p>
+    <p><strong>Budget:</strong> {{ budget }}</p>
+    <p><strong>Contact:</strong> {{ contact.name }}</p>
+    <p><strong>Email:</strong> {{ contact.email }}</p>
+    <p><strong>Phone #:</strong> {{ contact.phone }}</p>
+</body>
+
+</html>

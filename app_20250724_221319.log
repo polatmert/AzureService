@@ -1,0 +1,76 @@
+2025-07-24 22:13:19,546 - rfp_app - INFO - Uygulama başlatılıyor... Log dosyası: app_20250724_221319.log
+2025-07-24 22:13:20,579 - rfp_app - INFO - Uygulama 8050 portunda başlatılıyor...
+2025-07-24 22:13:23,826 - rfp_app.openai - INFO - Azure OpenAI API bağlantısı kuruldu. Model: gpt-4.1, Endpoint: https://seraph-openapi.openai.azure.com/
+2025-07-24 22:13:24,956 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/assistants?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-24 22:13:24,986 - rfp_app.openai - INFO - Mevcut Assistant kullanılacak: asst_z8tFD3Bf3I7hKjwLQZNvBJDD
+2025-07-24 22:13:24,986 - rfp_app.openai - INFO - Assistant adı: Test Assistant
+2025-07-24 22:13:24,986 - rfp_app.openai - INFO - Azure OpenAI Assistant API'ye istek gönderiliyor... Assistant ID: asst_vbaEyelIh7J9g4YhXYXYHIWt
+2025-07-24 22:13:25,175 - httpx - INFO - HTTP Request: POST https://seraph-openapi.openai.azure.com/openai/threads?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-24 22:13:25,188 - rfp_app.openai - INFO - Thread oluşturuldu: thread_Z62vCTYA3ZZ6PMLwUMIZXCx4
+2025-07-24 22:13:25,443 - httpx - INFO - HTTP Request: POST https://seraph-openapi.openai.azure.com/openai/threads/thread_Z62vCTYA3ZZ6PMLwUMIZXCx4/messages?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-24 22:13:25,471 - rfp_app.openai - INFO - Mesaj thread'e eklendi: msg_G5sBqDPNEad7HQC2JOaPAb6q
+2025-07-24 22:13:25,777 - httpx - INFO - HTTP Request: POST https://seraph-openapi.openai.azure.com/openai/threads/thread_Z62vCTYA3ZZ6PMLwUMIZXCx4/runs?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-24 22:13:25,800 - rfp_app.openai - INFO - Assistant çalıştırıldı: asst_vbaEyelIh7J9g4YhXYXYHIWt
+2025-07-24 22:13:27,060 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Z62vCTYA3ZZ6PMLwUMIZXCx4/runs/run_klr3wqiSrDoDe4TdHdU7AgFF?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-24 22:13:27,062 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-24 22:13:28,295 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Z62vCTYA3ZZ6PMLwUMIZXCx4/runs/run_klr3wqiSrDoDe4TdHdU7AgFF?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-24 22:13:28,297 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-24 22:13:29,545 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Z62vCTYA3ZZ6PMLwUMIZXCx4/runs/run_klr3wqiSrDoDe4TdHdU7AgFF?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-24 22:13:29,548 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-24 22:13:30,783 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Z62vCTYA3ZZ6PMLwUMIZXCx4/runs/run_klr3wqiSrDoDe4TdHdU7AgFF?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-24 22:13:30,785 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-24 22:13:31,971 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Z62vCTYA3ZZ6PMLwUMIZXCx4/runs/run_klr3wqiSrDoDe4TdHdU7AgFF?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-24 22:13:31,973 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-24 22:13:33,213 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Z62vCTYA3ZZ6PMLwUMIZXCx4/runs/run_klr3wqiSrDoDe4TdHdU7AgFF?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-24 22:13:33,216 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-24 22:13:34,440 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Z62vCTYA3ZZ6PMLwUMIZXCx4/runs/run_klr3wqiSrDoDe4TdHdU7AgFF?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-24 22:13:34,442 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-24 22:13:35,705 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Z62vCTYA3ZZ6PMLwUMIZXCx4/runs/run_klr3wqiSrDoDe4TdHdU7AgFF?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-24 22:13:35,707 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-24 22:13:36,891 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Z62vCTYA3ZZ6PMLwUMIZXCx4/runs/run_klr3wqiSrDoDe4TdHdU7AgFF?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-24 22:13:36,893 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-24 22:13:38,103 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Z62vCTYA3ZZ6PMLwUMIZXCx4/runs/run_klr3wqiSrDoDe4TdHdU7AgFF?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-24 22:13:38,105 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-24 22:13:39,316 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Z62vCTYA3ZZ6PMLwUMIZXCx4/runs/run_klr3wqiSrDoDe4TdHdU7AgFF?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-24 22:13:39,318 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-24 22:13:40,580 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Z62vCTYA3ZZ6PMLwUMIZXCx4/runs/run_klr3wqiSrDoDe4TdHdU7AgFF?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-24 22:13:40,582 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-24 22:13:41,773 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Z62vCTYA3ZZ6PMLwUMIZXCx4/runs/run_klr3wqiSrDoDe4TdHdU7AgFF?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-24 22:13:41,776 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-24 22:13:42,994 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Z62vCTYA3ZZ6PMLwUMIZXCx4/runs/run_klr3wqiSrDoDe4TdHdU7AgFF?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-24 22:13:42,996 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-24 22:13:44,195 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Z62vCTYA3ZZ6PMLwUMIZXCx4/runs/run_klr3wqiSrDoDe4TdHdU7AgFF?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-24 22:13:44,198 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-24 22:13:45,406 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Z62vCTYA3ZZ6PMLwUMIZXCx4/runs/run_klr3wqiSrDoDe4TdHdU7AgFF?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-24 22:13:45,408 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-24 22:13:46,597 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Z62vCTYA3ZZ6PMLwUMIZXCx4/runs/run_klr3wqiSrDoDe4TdHdU7AgFF?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-24 22:13:46,599 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-24 22:13:47,845 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Z62vCTYA3ZZ6PMLwUMIZXCx4/runs/run_klr3wqiSrDoDe4TdHdU7AgFF?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-24 22:13:47,849 - rfp_app.openai - INFO - Run durumu: completed
+2025-07-24 22:13:48,066 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Z62vCTYA3ZZ6PMLwUMIZXCx4/messages?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-24 22:13:48,071 - rfp_app.openai - INFO - Assistant yanıtı alındı: 6078 karakter
+2025-07-24 22:13:48,072 - rfp_app.openai - INFO - Azure OpenAI Assistant API'ye istek gönderiliyor... Assistant ID: asst_agqWgdJaUkdGDqkLJWAgRMOl
+2025-07-24 22:13:48,267 - httpx - INFO - HTTP Request: POST https://seraph-openapi.openai.azure.com/openai/threads?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-24 22:13:48,269 - rfp_app.openai - INFO - Thread oluşturuldu: thread_AFGRGQNHjQNXuOXQGd18AQ3T
+2025-07-24 22:13:48,516 - httpx - INFO - HTTP Request: POST https://seraph-openapi.openai.azure.com/openai/threads/thread_AFGRGQNHjQNXuOXQGd18AQ3T/messages?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-24 22:13:48,518 - rfp_app.openai - INFO - Mesaj thread'e eklendi: msg_miLML3dRErEREuOkyMgpEcUx
+2025-07-24 22:13:49,102 - httpx - INFO - HTTP Request: POST https://seraph-openapi.openai.azure.com/openai/threads/thread_AFGRGQNHjQNXuOXQGd18AQ3T/runs?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-24 22:13:49,105 - rfp_app.openai - INFO - Assistant çalıştırıldı: asst_agqWgdJaUkdGDqkLJWAgRMOl
+2025-07-24 22:13:50,306 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_AFGRGQNHjQNXuOXQGd18AQ3T/runs/run_YHzSIeSUQVIEqNwDYziwMqKp?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-24 22:13:50,310 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-24 22:13:51,500 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_AFGRGQNHjQNXuOXQGd18AQ3T/runs/run_YHzSIeSUQVIEqNwDYziwMqKp?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-24 22:13:51,503 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-24 22:13:52,763 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_AFGRGQNHjQNXuOXQGd18AQ3T/runs/run_YHzSIeSUQVIEqNwDYziwMqKp?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-24 22:13:52,765 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-24 22:13:54,025 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_AFGRGQNHjQNXuOXQGd18AQ3T/runs/run_YHzSIeSUQVIEqNwDYziwMqKp?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-24 22:13:54,027 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-24 22:13:55,270 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_AFGRGQNHjQNXuOXQGd18AQ3T/runs/run_YHzSIeSUQVIEqNwDYziwMqKp?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-24 22:13:55,272 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-24 22:13:56,504 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_AFGRGQNHjQNXuOXQGd18AQ3T/runs/run_YHzSIeSUQVIEqNwDYziwMqKp?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-24 22:13:56,506 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-24 22:13:57,723 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_AFGRGQNHjQNXuOXQGd18AQ3T/runs/run_YHzSIeSUQVIEqNwDYziwMqKp?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-24 22:13:57,725 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-24 22:13:58,993 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_AFGRGQNHjQNXuOXQGd18AQ3T/runs/run_YHzSIeSUQVIEqNwDYziwMqKp?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-24 22:13:58,996 - rfp_app.openai - INFO - Run durumu: completed
+2025-07-24 22:13:59,212 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_AFGRGQNHjQNXuOXQGd18AQ3T/messages?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-24 22:13:59,217 - rfp_app.openai - INFO - Assistant yanıtı alındı: 2639 karakter
