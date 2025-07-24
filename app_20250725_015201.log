@@ -1,0 +1,15 @@
+2025-07-25 01:52:01,321 - rfp_app - INFO - Uygulama başlatılıyor... Log dosyası: app_20250725_015201.log
+2025-07-25 01:52:01,614 - rfp_app.openai - INFO - Azure OpenAI API bağlantısı kuruldu. Model: gpt-4.1, Endpoint: https://seraph-openapi.openai.azure.com/
+2025-07-25 01:52:03,208 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/assistants?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 01:52:03,216 - rfp_app.openai - INFO - Mevcut Assistant kullanılacak: asst_MhSwILOybr3VZMDpBy6vJp36
+2025-07-25 01:52:03,216 - rfp_app.openai - INFO - Assistant adı:  Supplier Evaluator & Contract Generator Agent
+2025-07-25 01:52:03,314 - backend.services.document_intelligence_service - INFO - Azure Document Intelligence service initialized
+2025-07-25 01:52:03,331 - rfp_app - INFO - Uygulama 8050 portunda başlatılıyor...
+2025-07-25 01:52:05,235 - backend.api.document_routes - INFO - Döküman analizi isteği alındı: RFP_Analiz_20250724_211614.docx
+2025-07-25 01:52:05,235 - backend.services.document_intelligence_service - INFO - Döküman analizi başlatılıyor, content_type: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+2025-07-25 01:52:05,236 - backend.services.document_intelligence_service - ERROR - Döküman analizi sırasında hata: DocumentIntelligenceClientOperationsMixin.begin_analyze_document() missing 1 required positional argument: 'body'
+2025-07-25 01:52:05,236 - backend.api.document_routes - ERROR - Döküman analizi sırasında hata: Döküman analizi başarısız: DocumentIntelligenceClientOperationsMixin.begin_analyze_document() missing 1 required positional argument: 'body'
+2025-07-25 01:52:07,191 - backend.api.document_routes - INFO - Döküman analizi isteği alındı: RFP_Analiz_20250724_211614.docx
+2025-07-25 01:52:07,191 - backend.services.document_intelligence_service - INFO - Döküman analizi başlatılıyor, content_type: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+2025-07-25 01:52:07,192 - backend.services.document_intelligence_service - ERROR - Döküman analizi sırasında hata: DocumentIntelligenceClientOperationsMixin.begin_analyze_document() missing 1 required positional argument: 'body'
+2025-07-25 01:52:07,192 - backend.api.document_routes - ERROR - Döküman analizi sırasında hata: Döküman analizi başarısız: DocumentIntelligenceClientOperationsMixin.begin_analyze_document() missing 1 required positional argument: 'body'

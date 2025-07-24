@@ -1,0 +1,11 @@
+2025-07-25 01:47:58,061 - rfp_app - INFO - Uygulama başlatılıyor... Log dosyası: app_20250725_014758.log
+2025-07-25 01:47:58,409 - rfp_app.openai - INFO - Azure OpenAI API bağlantısı kuruldu. Model: gpt-4.1, Endpoint: https://seraph-openapi.openai.azure.com/
+2025-07-25 01:47:59,917 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/assistants?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 01:47:59,925 - rfp_app.openai - INFO - Mevcut Assistant kullanılacak: asst_MhSwILOybr3VZMDpBy6vJp36
+2025-07-25 01:47:59,925 - rfp_app.openai - INFO - Assistant adı:  Supplier Evaluator & Contract Generator Agent
+2025-07-25 01:48:00,028 - backend.services.document_intelligence_service - INFO - Azure Document Intelligence service initialized
+2025-07-25 01:48:00,047 - rfp_app - INFO - Uygulama 8050 portunda başlatılıyor...
+2025-07-25 01:48:02,739 - backend.api.document_routes - INFO - Döküman analizi isteği alındı: RFP_Analiz_20250724_211614.docx
+2025-07-25 01:48:02,739 - backend.services.document_intelligence_service - INFO - Döküman analizi başlatılıyor, content_type: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+2025-07-25 01:48:02,740 - backend.services.document_intelligence_service - ERROR - Döküman analizi sırasında hata: AnalyzeDocumentRequest.__init__() got an unexpected keyword argument 'base64_source'
+2025-07-25 01:48:02,740 - backend.api.document_routes - ERROR - Döküman analizi sırasında hata: Döküman analizi başarısız: AnalyzeDocumentRequest.__init__() got an unexpected keyword argument 'base64_source'

@@ -25,6 +25,7 @@ parent_dir = os.path.dirname(os.path.dirname(current_dir))
 sys.path.insert(0, parent_dir) 
 
 from backend.api.routes import rfp_routes
+from backend.api import document_routes
 
 app = FastAPI(
     title="RFP ve Sözleşme Asistanı",
@@ -43,6 +44,9 @@ app.add_middleware(
 
 # Sadece RFP rotalarını ekle
 app.include_router(rfp_routes.router)
+
+# Document Intelligence routes'unu ekle
+app.include_router(document_routes.router, prefix="/document", tags=["Document Intelligence"])
 
 @app.get("/")
 def read_root():

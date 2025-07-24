@@ -1,0 +1,45 @@
+2025-07-25 01:55:54,852 - rfp_app - INFO - Uygulama başlatılıyor... Log dosyası: app_20250725_015554.log
+2025-07-25 01:55:55,173 - rfp_app.openai - INFO - Azure OpenAI API bağlantısı kuruldu. Model: gpt-4.1, Endpoint: https://seraph-openapi.openai.azure.com/
+2025-07-25 01:55:56,681 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/assistants?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 01:55:56,689 - rfp_app.openai - INFO - Mevcut Assistant kullanılacak: asst_MhSwILOybr3VZMDpBy6vJp36
+2025-07-25 01:55:56,689 - rfp_app.openai - INFO - Assistant adı:  Supplier Evaluator & Contract Generator Agent
+2025-07-25 01:55:56,794 - backend.services.document_intelligence_service - INFO - Azure Document Intelligence service initialized
+2025-07-25 01:55:56,811 - rfp_app - INFO - Uygulama 8050 portunda başlatılıyor...
+2025-07-25 01:56:00,771 - backend.api.document_routes - INFO - Döküman analizi isteği alındı: RFP_Analiz_20250724_211614.docx
+2025-07-25 01:56:00,772 - backend.services.document_intelligence_service - INFO - Döküman analizi başlatılıyor, content_type: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+2025-07-25 01:56:00,774 - azure.core.pipeline.policies.http_logging_policy - INFO - Request URL: 'https://seraph-document.cognitiveservices.azure.com//documentintelligence/documentModels/prebuilt-document:analyze?api-version=REDACTED'
+Request method: 'POST'
+Request headers:
+    'content-type': 'application/json'
+    'Content-Length': '42232'
+    'Accept': 'application/json'
+    'x-ms-client-request-id': '5e506230-68e1-11f0-a206-e67cfaf6ed36'
+    'User-Agent': 'azsdk-python-ai-documentintelligence/1.0.2 Python/3.13.5 (macOS-13.2.1-arm64-arm-64bit-Mach-O)'
+    'Ocp-Apim-Subscription-Key': 'REDACTED'
+A body is sent with the request
+2025-07-25 01:56:02,583 - azure.core.pipeline.policies.http_logging_policy - INFO - Response status: 400
+Response headers:
+    'Content-Length': '221'
+    'Content-Type': 'application/json; charset=utf-8'
+    'ms-azure-ai-errorcode': 'REDACTED'
+    'x-ms-error-code': 'InvalidRequest'
+    'x-envoy-upstream-service-time': 'REDACTED'
+    'apim-request-id': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'x-content-type-options': 'REDACTED'
+    'x-ms-region': 'REDACTED'
+    'Date': 'Thu, 24 Jul 2025 22:56:01 GMT'
+2025-07-25 01:56:02,586 - backend.services.document_intelligence_service - ERROR - Döküman analizi sırasında hata: (InvalidRequest) Invalid request.
+Code: InvalidRequest
+Message: Invalid request.
+Inner error: {
+    "code": "InvalidContent",
+    "message": "The file is corrupted or format is unsupported. Refer to documentation for the list of supported formats."
+}
+2025-07-25 01:56:02,586 - backend.api.document_routes - ERROR - Döküman analizi sırasında hata: Döküman analizi başarısız: (InvalidRequest) Invalid request.
+Code: InvalidRequest
+Message: Invalid request.
+Inner error: {
+    "code": "InvalidContent",
+    "message": "The file is corrupted or format is unsupported. Refer to documentation for the list of supported formats."
+}
