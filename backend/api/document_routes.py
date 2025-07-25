@@ -1,8 +1,11 @@
 from fastapi import APIRouter, UploadFile, File, HTTPException, Depends
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, StreamingResponse
 import logging
 from typing import List, Dict, Any, Optional
 import io
+import tempfile
+import os
+from datetime import datetime
 
 from ..services.document_intelligence_service import document_intelligence_service
 from ..services.openai_assistant_service import openai_assistant_service
@@ -583,3 +586,200 @@ async def score_document_analysis(
     except Exception as e:
         logger.error(f"Belge skorlama sırasında hata: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Skorlama başarısız: {str(e)}")
+
+@router.post("/process-docx")
+async def process_docx_file(
+    file: UploadFile = File(..., description="İşlenecek DOCX dosyası")
+):
+    """
+    DOCX dosyası alır ve işlenmiş DOCX dosyası döndürür
+    
+    - **file**: DOCX formatında belge dosyası
+    
+    Returns:
+        - İşlenmiş DOCX dosyası (StreamingResponse)
+    """
+    try:
+        logger.info(f"DOCX işleme isteği alındı: {file.filename}")
+        
+        # Dosya tipini kontrol et
+        if file.content_type != "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
+            raise HTTPException(
+                status_code=400, 
+                detail=f"Sadece DOCX dosyaları desteklenir. Gönderilen tip: {file.content_type}"
+            )
+        
+        # Dosya uzantısını kontrol et
+        if not file.filename.lower().endswith('.docx'):
+            raise HTTPException(
+                status_code=400, 
+                detail="Dosya .docx uzantısına sahip olmalıdır"
+            )
+        
+        # Dosyayı oku
+        file_content = await file.read()
+        
+        if len(file_content) == 0:
+            raise HTTPException(status_code=400, detail="Boş dosya yüklenemez")
+            
+        # Dosya boyutunu kontrol et (50MB limit)
+        max_file_size = 50 * 1024 * 1024  # 50MB
+        if len(file_content) > max_file_size:
+            raise HTTPException(
+                status_code=400, 
+                detail=f"Dosya çok büyük. Maksimum boyut: 50MB"
+            )
+            
+        logger.info(f"Dosya validasyonu başarılı: {file.filename}")
+        
+        # Dummy DOCX response oluştur
+        processed_docx = create_dummy_docx_response(file.filename, file_content)
+        
+        # Response için dosya adı oluştur
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        original_name = os.path.splitext(file.filename)[0]
+        response_filename = f"{original_name}_processed_{timestamp}.docx"
+        
+        logger.info(f"DOCX işleme başarıyla tamamlandı: {response_filename}")
+        
+        # StreamingResponse ile DOCX dosyasını döndür
+        return StreamingResponse(
+            io.BytesIO(processed_docx),
+            media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            headers={
+                "Content-Disposition": f"attachment; filename={response_filename}",
+                "Content-Length": str(len(processed_docx))
+            }
+        )
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"DOCX işleme sırasında hata: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"DOCX işleme başarısız: {str(e)}")
+
+def create_dummy_docx_response(original_filename: str, original_content: bytes) -> bytes:
+    """
+    Dummy DOCX response oluşturur
+    
+    Args:
+        original_filename: Orijinal dosya adı
+        original_content: Orijinal dosya içeriği
+        
+    Returns:
+        bytes: Dummy DOCX dosyası bytes formatında
+    """
+    try:
+        from docx import Document
+        from docx.shared import Inches
+        
+        # Yeni bir Word belgesi oluştur
+        doc = Document()
+        
+        # Başlık ekle
+        title = doc.add_heading('İşlenmiş Belge Raporu', 0)
+        
+        # Paragraf ekle
+        doc.add_paragraph(f'Orijinal Dosya: {original_filename}')
+        doc.add_paragraph(f'İşleme Tarihi: {datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
+        doc.add_paragraph(f'Dosya Boyutu: {len(original_content)} bytes')
+        
+        doc.add_heading('İşleme Özeti', level=1)
+        doc.add_paragraph('Bu belge başarıyla işlenmiştir. Aşağıda işleme detayları bulunmaktadır:')
+        
+        # Liste ekle
+        doc.add_paragraph('• Dosya formatı doğrulandı', style='List Bullet')
+        doc.add_paragraph('• İçerik analizi tamamlandı', style='List Bullet')
+        doc.add_paragraph('• Kalite kontrol yapıldı', style='List Bullet')
+        doc.add_paragraph('• İşleme başarıyla tamamlandı', style='List Bullet')
+        
+        doc.add_heading('Sonuç', level=1)
+        doc.add_paragraph(
+            'Belgeniz başarıyla işlenmiştir. Bu dummy response gerçek bir işleme '
+            'sürecinin simülasyonudur. Gelecekte bu endpoint gerçek belge işleme '
+            'fonksiyonları ile güncellenecektir.'
+        )
+        
+        # Tablo ekle
+        table = doc.add_table(rows=1, cols=2)
+        table.style = 'Table Grid'
+        hdr_cells = table.rows[0].cells
+        hdr_cells[0].text = 'Özellik'
+        hdr_cells[1].text = 'Değer'
+        
+        row_cells = table.add_row().cells
+        row_cells[0].text = 'Dosya Adı'
+        row_cells[1].text = original_filename
+        
+        row_cells = table.add_row().cells
+        row_cells[0].text = 'İşleme Durumu'
+        row_cells[1].text = 'Başarılı'
+        
+        row_cells = table.add_row().cells
+        row_cells[0].text = 'İşleme Süresi'
+        row_cells[1].text = '< 1 saniye'
+        
+        # Belgeyi bytes olarak kaydet
+        doc_buffer = io.BytesIO()
+        doc.save(doc_buffer)
+        doc_buffer.seek(0)
+        
+        return doc_buffer.getvalue()
+        
+    except ImportError:
+        # python-docx yoksa basit bir ZIP dosyası oluştur (minimal DOCX)
+        logger.warning("python-docx bulunamadı, basit DOCX oluşturuluyor")
+        return create_minimal_docx(original_filename)
+    except Exception as e:
+        logger.error(f"Dummy DOCX oluşturma hatası: {str(e)}")
+        return create_minimal_docx(original_filename)
+
+def create_minimal_docx(filename: str) -> bytes:
+    """
+    Minimal DOCX dosyası oluşturur (python-docx olmadan)
+    """
+    import zipfile
+    
+    # Minimal DOCX yapısı
+    content_types = '''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
+    <Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>
+    <Default Extension="xml" ContentType="application/xml"/>
+    <Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>
+</Types>'''
+    
+    document_xml = f'''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+    <w:body>
+        <w:p>
+            <w:r>
+                <w:t>İşlenmiş Belge: {filename}</w:t>
+            </w:r>
+        </w:p>
+        <w:p>
+            <w:r>
+                <w:t>İşleme Tarihi: {datetime.now().strftime("%d/%m/%Y %H:%M:%S")}</w:t>
+            </w:r>
+        </w:p>
+        <w:p>
+            <w:r>
+                <w:t>Bu belge başarıyla işlenmiştir.</w:t>
+            </w:r>
+        </w:p>
+    </w:body>
+</w:document>'''
+    
+    rels = '''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+    <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/>
+</Relationships>'''
+    
+    # ZIP dosyası oluştur
+    buffer = io.BytesIO()
+    with zipfile.ZipFile(buffer, 'w', zipfile.ZIP_DEFLATED) as zip_file:
+        zip_file.writestr('[Content_Types].xml', content_types)
+        zip_file.writestr('_rels/.rels', rels)
+        zip_file.writestr('word/document.xml', document_xml)
+    
+    buffer.seek(0)
+    return buffer.getvalue()
