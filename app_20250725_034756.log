@@ -1,0 +1,24 @@
+2025-07-25 03:47:56,755 - rfp_app - INFO - Uygulama başlatılıyor... Log dosyası: app_20250725_034756.log
+2025-07-25 03:47:57,000 - rfp_app.openai - INFO - Azure OpenAI API bağlantısı kuruldu. Model: gpt-4.1, Endpoint: https://seraph-openapi.openai.azure.com/
+2025-07-25 03:47:57,662 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/assistants?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 03:47:57,675 - rfp_app.openai - INFO - Mevcut Assistant kullanılacak: asst_Bocv8Da8OcjxlyZ9XdowGCC1
+2025-07-25 03:47:57,675 - rfp_app.openai - INFO - Assistant adı: Contract generator
+2025-07-25 03:47:57,875 - backend.services.document_intelligence_service - INFO - Azure Document Intelligence service initialized
+2025-07-25 03:47:57,909 - rfp_app.openai - INFO - Azure OpenAI API bağlantısı kuruldu. Model: gpt-4.1, Endpoint: https://seraph-openapi.openai.azure.com/
+2025-07-25 03:47:58,506 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/assistants?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 03:47:58,508 - rfp_app.openai - INFO - Mevcut Assistant kullanılacak: asst_Bocv8Da8OcjxlyZ9XdowGCC1
+2025-07-25 03:47:58,508 - rfp_app.openai - INFO - Assistant adı: Contract generator
+2025-07-25 03:47:58,508 - backend.services.openai_assistant_service - INFO - OpenAI Assistant Service başlatıldı, Assistant ID: asst_MhSwILOybr3VZMDpBy6vJp36
+2025-07-25 03:47:58,539 - rfp_app - INFO - Uygulama 8050 portunda başlatılıyor...
+2025-07-25 04:19:31,908 - backend.api.document_routes - INFO - DOCX işleme isteği alındı: RFP_Belgesi_2025-07-24 (6).docx
+2025-07-25 04:19:31,910 - backend.api.document_routes - INFO - Dosya validasyonu başarılı: RFP_Belgesi_2025-07-24 (6).docx
+2025-07-25 04:19:31,945 - backend.api.document_routes - INFO - DOCX işleme başarıyla tamamlandı: RFP_Belgesi_2025-07-24 (6)_processed_20250725_041931.docx
+2025-07-25 04:19:33,451 - backend.api.document_routes - INFO - DOCX işleme isteği alındı: RFP_Belgesi_2025-07-24 (6).docx
+2025-07-25 04:19:33,452 - backend.api.document_routes - INFO - Dosya validasyonu başarılı: RFP_Belgesi_2025-07-24 (6).docx
+2025-07-25 04:19:33,488 - backend.api.document_routes - INFO - DOCX işleme başarıyla tamamlandı: RFP_Belgesi_2025-07-24 (6)_processed_20250725_041933.docx
+2025-07-25 04:19:34,288 - backend.api.document_routes - INFO - DOCX işleme isteği alındı: RFP_Belgesi_2025-07-24 (6).docx
+2025-07-25 04:19:34,289 - backend.api.document_routes - INFO - Dosya validasyonu başarılı: RFP_Belgesi_2025-07-24 (6).docx
+2025-07-25 04:19:34,316 - backend.api.document_routes - INFO - DOCX işleme başarıyla tamamlandı: RFP_Belgesi_2025-07-24 (6)_processed_20250725_041934.docx
+2025-07-25 04:19:34,843 - backend.api.document_routes - INFO - DOCX işleme isteği alındı: RFP_Belgesi_2025-07-24 (6).docx
+2025-07-25 04:19:34,843 - backend.api.document_routes - INFO - Dosya validasyonu başarılı: RFP_Belgesi_2025-07-24 (6).docx
+2025-07-25 04:19:34,874 - backend.api.document_routes - INFO - DOCX işleme başarıyla tamamlandı: RFP_Belgesi_2025-07-24 (6)_processed_20250725_041934.docx

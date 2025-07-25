@@ -1,0 +1,12 @@
+2025-07-25 04:23:58,337 - rfp_app - INFO - Uygulama başlatılıyor... Log dosyası: app_20250725_042358.log
+2025-07-25 04:23:59,200 - rfp_app.openai - INFO - Azure OpenAI API bağlantısı kuruldu. Model: gpt-4.1, Endpoint: https://seraph-openapi.openai.azure.com/
+2025-07-25 04:24:00,078 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/assistants?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:24:00,127 - rfp_app.openai - INFO - Mevcut Assistant kullanılacak: asst_Bocv8Da8OcjxlyZ9XdowGCC1
+2025-07-25 04:24:00,127 - rfp_app.openai - INFO - Assistant adı: Contract generator
+2025-07-25 04:24:00,377 - backend.services.document_intelligence_service - INFO - Azure Document Intelligence service initialized
+2025-07-25 04:24:00,408 - rfp_app.openai - INFO - Azure OpenAI API bağlantısı kuruldu. Model: gpt-4.1, Endpoint: https://seraph-openapi.openai.azure.com/
+2025-07-25 04:24:01,059 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/assistants?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:24:01,068 - rfp_app.openai - INFO - Mevcut Assistant kullanılacak: asst_Bocv8Da8OcjxlyZ9XdowGCC1
+2025-07-25 04:24:01,068 - rfp_app.openai - INFO - Assistant adı: Contract generator
+2025-07-25 04:24:01,068 - backend.services.openai_assistant_service - INFO - OpenAI Assistant Service başlatıldı, Assistant ID: asst_MhSwILOybr3VZMDpBy6vJp36
+2025-07-25 04:24:01,138 - rfp_app - INFO - Uygulama 8050 portunda başlatılıyor...
