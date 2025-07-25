@@ -1,0 +1,35 @@
+# SonarCloud CI/CD pipeline örneği (GitHub Actions için)
+name: SonarCloud
+
+on:
+  workflow_call:
+
+jobs:
+  sonarcloud:
+    name: SonarCloud
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install SonarScanner
+        run: |
+          curl -sSLo sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
+          unzip sonar-scanner.zip -d $HOME/sonar-scanner
+          export PATH="$HOME/sonar-scanner/sonar-scanner-5.0.1.3006-linux/bin:$PATH"
+      - name: Run SonarCloud analysis
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        run: |
+          sonar-scanner \
+            -Dsonar.projectKey=AzureService \
+            -Dsonar.organization=DevAgent-Seraph \
+            -Dsonar.sources=backend \
+            -Dsonar.language=py \
+            -Dsonar.sourceEncoding=UTF-8 \
+            -Dsonar.host.url=$SONAR_HOST_URL \
+            -Dsonar.python.version=3.11 \
+            -Dsonar.token=$SONAR_TOKEN
