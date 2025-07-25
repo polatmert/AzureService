@@ -1,0 +1,60 @@
+2025-07-25 09:54:28,708 - rfp_app - INFO - Uygulama başlatılıyor... Log dosyası: app_20250725_095428.log
+2025-07-25 09:54:29,053 - rfp_app.openai - INFO - Azure OpenAI API bağlantısı kuruldu. Model: gpt-4.1, Endpoint: https://seraph-openapi.openai.azure.com/
+2025-07-25 09:54:29,860 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/assistants?api-version=2025-01-01-preview "HTTP/1.1 401 PermissionDenied"
+2025-07-25 09:54:29,863 - rfp_app.openai - ERROR - Assistant initialize hatası: Error code: 401 - {'error': {'code': '401', 'message': 'Access denied due to invalid subscription key or wrong API endpoint. Make sure to provide a valid key for an active subscription and use a correct regional API endpoint for your resource.'}}
+2025-07-25 09:54:29,864 - rfp_app.openai - WARNING - Assistant olmadan devam edilecek...
+2025-07-25 09:54:30,009 - backend.services.document_intelligence_service - INFO - Azure Document Intelligence service initialized
+2025-07-25 09:54:30,045 - rfp_app.openai - INFO - Azure OpenAI API bağlantısı kuruldu. Model: gpt-4.1, Endpoint: https://seraph-openapi.openai.azure.com/
+2025-07-25 09:54:30,366 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/assistants?api-version=2025-01-01-preview "HTTP/1.1 401 PermissionDenied"
+2025-07-25 09:54:30,367 - rfp_app.openai - ERROR - Assistant initialize hatası: Error code: 401 - {'error': {'code': '401', 'message': 'Access denied due to invalid subscription key or wrong API endpoint. Make sure to provide a valid key for an active subscription and use a correct regional API endpoint for your resource.'}}
+2025-07-25 09:54:30,367 - rfp_app.openai - WARNING - Assistant olmadan devam edilecek...
+2025-07-25 09:54:30,367 - backend.services.openai_assistant_service - INFO - OpenAI Assistant Service başlatıldı, Assistant ID: asst_MhSwILOybr3VZMDpBy6vJp36
+2025-07-25 09:54:30,406 - rfp_app - INFO - Uygulama 8050 portunda başlatılıyor...
+2025-07-25 09:54:40,864 - rfp_app.openai - INFO - Azure OpenAI API bağlantısı kuruldu. Model: gpt-4.1, Endpoint: https://seraph-openapi.openai.azure.com/
+2025-07-25 09:54:41,147 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/assistants?api-version=2025-01-01-preview "HTTP/1.1 401 PermissionDenied"
+2025-07-25 09:54:41,148 - rfp_app.openai - ERROR - Assistant initialize hatası: Error code: 401 - {'error': {'code': '401', 'message': 'Access denied due to invalid subscription key or wrong API endpoint. Make sure to provide a valid key for an active subscription and use a correct regional API endpoint for your resource.'}}
+2025-07-25 09:54:41,148 - rfp_app.openai - WARNING - Assistant olmadan devam edilecek...
+2025-07-25 09:54:41,160 - rfp_app.openai - INFO - Azure OpenAI Assistant API'ye istek gönderiliyor... Assistant ID: asst_Bocv8Da8OcjxlyZ9XdowGCC1
+2025-07-25 09:54:41,228 - httpx - INFO - HTTP Request: POST https://seraph-openapi.openai.azure.com/openai/threads?api-version=2025-01-01-preview "HTTP/1.1 401 PermissionDenied"
+2025-07-25 09:54:41,229 - rfp_app.openai - ERROR - Azure OpenAI Assistant API hatası: Error code: 401 - {'error': {'code': '401', 'message': 'Access denied due to invalid subscription key or wrong API endpoint. Make sure to provide a valid key for an active subscription and use a correct regional API endpoint for your resource.'}}
+2025-07-25 09:54:41,229 - rfp_app.openai - ERROR - Hata detayları: AuthenticationError
+2025-07-25 09:54:41,229 - rfp_app.openai - INFO - Fallback: Chat completion API kullanılıyor
+2025-07-25 09:54:41,512 - httpx - INFO - HTTP Request: POST https://seraph-openapi.openai.azure.com/openai/deployments/gpt-4.1/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 401 PermissionDenied"
+2025-07-25 09:54:41,513 - rfp_app.openai - ERROR - Fallback yöntemi de başarısız oldu: Error code: 401 - {'error': {'code': '401', 'message': 'Access denied due to invalid subscription key or wrong API endpoint. Make sure to provide a valid key for an active subscription and use a correct regional API endpoint for your resource.'}}
+2025-07-25 09:54:41,523 - backend.api.document_routes - ERROR - DOCX oluşturma hatası: Expecting value: line 1 column 1 (char 0)
+2025-07-25 09:54:45,509 - rfp_app.openai - INFO - Azure OpenAI API bağlantısı kuruldu. Model: gpt-4.1, Endpoint: https://seraph-openapi.openai.azure.com/
+2025-07-25 09:54:45,896 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/assistants?api-version=2025-01-01-preview "HTTP/1.1 401 PermissionDenied"
+2025-07-25 09:54:45,896 - rfp_app.openai - ERROR - Assistant initialize hatası: Error code: 401 - {'error': {'code': '401', 'message': 'Access denied due to invalid subscription key or wrong API endpoint. Make sure to provide a valid key for an active subscription and use a correct regional API endpoint for your resource.'}}
+2025-07-25 09:54:45,897 - rfp_app.openai - WARNING - Assistant olmadan devam edilecek...
+2025-07-25 09:54:45,913 - rfp_app.openai - INFO - Azure OpenAI Assistant API'ye istek gönderiliyor... Assistant ID: asst_Bocv8Da8OcjxlyZ9XdowGCC1
+2025-07-25 09:54:46,181 - httpx - INFO - HTTP Request: POST https://seraph-openapi.openai.azure.com/openai/threads?api-version=2025-01-01-preview "HTTP/1.1 401 PermissionDenied"
+2025-07-25 09:54:46,182 - rfp_app.openai - ERROR - Azure OpenAI Assistant API hatası: Error code: 401 - {'error': {'code': '401', 'message': 'Access denied due to invalid subscription key or wrong API endpoint. Make sure to provide a valid key for an active subscription and use a correct regional API endpoint for your resource.'}}
+2025-07-25 09:54:46,182 - rfp_app.openai - ERROR - Hata detayları: AuthenticationError
+2025-07-25 09:54:46,182 - rfp_app.openai - INFO - Fallback: Chat completion API kullanılıyor
+2025-07-25 09:54:46,445 - httpx - INFO - HTTP Request: POST https://seraph-openapi.openai.azure.com/openai/deployments/gpt-4.1/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 401 PermissionDenied"
+2025-07-25 09:54:46,453 - rfp_app.openai - ERROR - Fallback yöntemi de başarısız oldu: Error code: 401 - {'error': {'code': '401', 'message': 'Access denied due to invalid subscription key or wrong API endpoint. Make sure to provide a valid key for an active subscription and use a correct regional API endpoint for your resource.'}}
+2025-07-25 09:54:46,462 - backend.api.document_routes - ERROR - DOCX oluşturma hatası: Expecting value: line 1 column 1 (char 0)
+2025-07-25 09:56:00,616 - rfp_app.openai - INFO - Azure OpenAI API bağlantısı kuruldu. Model: gpt-4.1, Endpoint: https://seraph-openapi.openai.azure.com/
+2025-07-25 09:56:01,029 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/assistants?api-version=2025-01-01-preview "HTTP/1.1 401 PermissionDenied"
+2025-07-25 09:56:01,030 - rfp_app.openai - ERROR - Assistant initialize hatası: Error code: 401 - {'error': {'code': '401', 'message': 'Access denied due to invalid subscription key or wrong API endpoint. Make sure to provide a valid key for an active subscription and use a correct regional API endpoint for your resource.'}}
+2025-07-25 09:56:01,030 - rfp_app.openai - WARNING - Assistant olmadan devam edilecek...
+2025-07-25 09:56:01,045 - rfp_app.openai - INFO - Azure OpenAI Assistant API'ye istek gönderiliyor... Assistant ID: asst_Bocv8Da8OcjxlyZ9XdowGCC1
+2025-07-25 09:56:01,118 - httpx - INFO - HTTP Request: POST https://seraph-openapi.openai.azure.com/openai/threads?api-version=2025-01-01-preview "HTTP/1.1 401 PermissionDenied"
+2025-07-25 09:56:01,119 - rfp_app.openai - ERROR - Azure OpenAI Assistant API hatası: Error code: 401 - {'error': {'code': '401', 'message': 'Access denied due to invalid subscription key or wrong API endpoint. Make sure to provide a valid key for an active subscription and use a correct regional API endpoint for your resource.'}}
+2025-07-25 09:56:01,119 - rfp_app.openai - ERROR - Hata detayları: AuthenticationError
+2025-07-25 09:56:01,120 - rfp_app.openai - INFO - Fallback: Chat completion API kullanılıyor
+2025-07-25 09:56:01,432 - httpx - INFO - HTTP Request: POST https://seraph-openapi.openai.azure.com/openai/deployments/gpt-4.1/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 401 PermissionDenied"
+2025-07-25 09:56:01,433 - rfp_app.openai - ERROR - Fallback yöntemi de başarısız oldu: Error code: 401 - {'error': {'code': '401', 'message': 'Access denied due to invalid subscription key or wrong API endpoint. Make sure to provide a valid key for an active subscription and use a correct regional API endpoint for your resource.'}}
+2025-07-25 09:56:01,444 - backend.api.document_routes - ERROR - DOCX oluşturma hatası: Expecting value: line 1 column 1 (char 0)
+2025-07-25 09:57:09,187 - rfp_app.openai - INFO - Azure OpenAI API bağlantısı kuruldu. Model: gpt-4.1, Endpoint: https://seraph-openapi.openai.azure.com/
+2025-07-25 09:57:09,624 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/assistants?api-version=2025-01-01-preview "HTTP/1.1 401 PermissionDenied"
+2025-07-25 09:57:09,625 - rfp_app.openai - ERROR - Assistant initialize hatası: Error code: 401 - {'error': {'code': '401', 'message': 'Access denied due to invalid subscription key or wrong API endpoint. Make sure to provide a valid key for an active subscription and use a correct regional API endpoint for your resource.'}}
+2025-07-25 09:57:09,625 - rfp_app.openai - WARNING - Assistant olmadan devam edilecek...
+2025-07-25 09:57:09,642 - rfp_app.openai - INFO - Azure OpenAI Assistant API'ye istek gönderiliyor... Assistant ID: asst_Bocv8Da8OcjxlyZ9XdowGCC1
+2025-07-25 09:57:09,714 - httpx - INFO - HTTP Request: POST https://seraph-openapi.openai.azure.com/openai/threads?api-version=2025-01-01-preview "HTTP/1.1 401 PermissionDenied"
+2025-07-25 09:57:09,714 - rfp_app.openai - ERROR - Azure OpenAI Assistant API hatası: Error code: 401 - {'error': {'code': '401', 'message': 'Access denied due to invalid subscription key or wrong API endpoint. Make sure to provide a valid key for an active subscription and use a correct regional API endpoint for your resource.'}}
+2025-07-25 09:57:09,714 - rfp_app.openai - ERROR - Hata detayları: AuthenticationError
+2025-07-25 09:57:09,714 - rfp_app.openai - INFO - Fallback: Chat completion API kullanılıyor
+2025-07-25 09:57:10,030 - httpx - INFO - HTTP Request: POST https://seraph-openapi.openai.azure.com/openai/deployments/gpt-4.1/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 401 PermissionDenied"
+2025-07-25 09:57:10,031 - rfp_app.openai - ERROR - Fallback yöntemi de başarısız oldu: Error code: 401 - {'error': {'code': '401', 'message': 'Access denied due to invalid subscription key or wrong API endpoint. Make sure to provide a valid key for an active subscription and use a correct regional API endpoint for your resource.'}}
+2025-07-25 09:57:10,046 - backend.api.document_routes - ERROR - DOCX oluşturma hatası: Expecting value: line 1 column 1 (char 0)

@@ -13,6 +13,10 @@ from docx import Document
 from backend.api.routes.global_storage import global_storage
 from backend.services.openai_service import OpenAIService
 from backend.services.pdf_service import PDFService
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
 openai_service = OpenAIService()
 project_proposal_schema = """
 {
@@ -114,8 +118,8 @@ class AssistantRequest(BaseModel):
 
 class ChainAssistantRequest(BaseModel):
     prompt: str
-    first_assistant_id: str = "asst_vbaEyelIh7J9g4YhXYXYHIWt"
-    second_assistant_id: str = "asst_agqWgdJaUkdGDqkLJWAgRMOl"
+    first_assistant_id: str
+    second_assistant_id: str
 
 
 
@@ -555,7 +559,10 @@ async def chain_assistants(request: ChainAssistantRequest):
 
 """
 
-third_assistant_id: str = "asst_agqWgdJaUkdGDqkLJWAgRMOl"
+first_assistant_id: str = os.getenv("FIRST_ASSISTANT_ID")
+second_assistant_id: str = os.getenv("SECOND_ASSISTANT_ID")
+third_assistant_id: str = os.getenv("THIRD_ASSISTANT_ID")
+fourth_assistant_id: str = os.getenv("FOURTH_ASSISTANT_ID")
 
 third_assistant_prompt: str = "" #bu asistant 3 kere çağırılacak bizim önceki 
 #çıktıya göre bunun kullanılması neden faydalı neden zararlı. Ek olarak bütçe zaman teknoloji analizi yapacak
@@ -571,17 +578,4 @@ async def setup_third_assistant(request: ChainAssistantRequest):
     global_storage.append_json_response(request.prompt,third_response.get("response", ""))
 
 
-fourth_assistant_id: str = "asst_agqWgdJaUkdGDqkLJWAgRMOl"
 
-fourth_assistant_prompt: str = "" #Bu asistan 3 sözleşmenin verilerini alacak ve bunları karşılaştıracak. aralarından 1 tane seçecek
-#ve bu sözleşmeyi öneri olarak verecek.
-
-async def setup_fourth_assistant(request: ChainAssistantRequest):
-
-    best_entry = global_storage.get_highest_scored_json()
-    fourth_response = await openai_service.use_assistant(
-                prompt=request.prompt + f"{global_storage.get_all_json_responses()} bununla benim için bir sözleşme oluştur",
-                assistant_id=request.fourth_assistant_id
-            )
-
-    

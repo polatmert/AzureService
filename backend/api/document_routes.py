@@ -11,6 +11,9 @@ import re
 import json
 from ..services.document_intelligence_service import document_intelligence_service
 from ..services.openai_assistant_service import openai_assistant_service, OpenAIService
+from dotenv import load_dotenv
+
+load_dotenv()
 
 logger = logging.getLogger(__name__)
 
@@ -864,8 +867,7 @@ LÜTFEN SONUCU ŞU FORMATTA VERİN:
 }}
 """
 
-        # Assistant'ı kullan (belirtilen ID ile)
-        assistant_id = "asst_ypQ5qVFx9BTAMRLPHusd8MHS"
+        assistant_id = os.getenv("COMPARE_DOCS_ASSISTANT_ID")
 
         # OpenAI service'ini kullan
         from ..services.openai_service import OpenAIService
@@ -880,7 +882,7 @@ LÜTFEN SONUCU ŞU FORMATTA VERİN:
 
     except Exception as e:
         logger.error(f"Assistant karşılaştırma hatası: {str(e)}")
-        raise Exception(f"Assistant karşılaştırma başarısız: {str(e)}")
+        raise Exception("Assistant karşılaştırma başarısız")
 
 def extract_document_content(filename: str, analysis: Dict[str, Any]) -> str:
     """
@@ -1218,28 +1220,29 @@ async def process_docx_file(
     file: UploadFile = File(..., description="İşlenecek DOCX dosyası")
 ):
     openai_service = OpenAIService()
-
     text_content = await file_to_string(file)
-    process_documents_agent_id = "asst_Bocv8Da8OcjxlyZ9XdowGCC1"
+    process_documents_agent_id = os.getenv("PROCESS_DOCS_ASSISTANT_ID")
     process_docx_response = await openai_service.use_assistant(
-                prompt=f"Aşağıda bir sözleşme metni var. Bu metni analiz et ve bana {agreement_create_schema} formatında, "
-        "tüm alanları dolduracak şekilde JSON döndür. Alan başlıklarını ve yapıyı koru, içerikleri metinden çıkar. "
-        "Sadece geçerli ve parse edilebilir valid bir JSON döndür. Döndüğün JSON'un başına veya herhangi bir yerine 'json\\n' ifadesini ekleme. "
-        "Sözleşme metni:\n\n"
-        f"{text_content}",
-                assistant_id=process_documents_agent_id
-            )
+        prompt=(
+            f"Aşağıda bir sözleşme metni var. Bu metni analiz et ve bana {agreement_create_schema} formatında, "
+            "tüm alanları dolduracak şekilde JSON döndür. Alan başlıklarını ve yapıyı koru, içerikleri metinden çıkar. "
+            "Sadece geçerli ve parse edilebilir valid bir JSON döndür. Döndüğün JSON'un başına veya herhangi bir yerine 'json\\n' ifadesini ekleme. "
+            "Sözleşme metni:\n\n"
+            f"{text_content}"
+        ),
+        assistant_id=process_documents_agent_id
+    )
     json_string = process_docx_response.get("response", "")
+    # Remove all occurrences of 'json\n' from the response
     json_string = json_string.replace("json\n", "")
-
-    docx_response = agreement_json_to_docx(json_string, output_path="agreement_output.docx")
-    buffer = io.BytesIO()
-    buffer.seek(0)
+    try:
+        docx_response = agreement_json_to_docx(json_string, output_path="agreement_output.docx")
+    except Exception as e:
+        logger.error(f"DOCX oluşturma hatası: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"DOCX oluşturma başarısız: {str(e)}")
     buffer_docx = io.BytesIO()
     docx_response.save(buffer_docx)
     buffer_docx.seek(0)
-
-        # PDF dosyasını döndür
     return Response(
         content=buffer_docx.getvalue(),
         media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -1254,7 +1257,7 @@ async def process_docx_file(
     openai_service = OpenAIService()
 
     text_content = await file_to_string(file)
-    process_documents_agent_id = "asst_Bocv8Da8OcjxlyZ9XdowGCC1"
+    process_documents_agent_id = os.getenv("PROCESS_DOCS_ASSISTANT_ID")
     process_docx_response = await openai_service.use_assistant(
                 prompt=f"Aşağıda bir sözleşme metni var. Bu metni analiz et ve bana {agreement_create_schema} formatında, "
                 "tüm alanları dolduracak şekilde JSON döndür. Alan başlıklarını ve yapıyı koru, içerikleri metinden çıkar. "

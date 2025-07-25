@@ -12,8 +12,8 @@ logger = logging.getLogger(__name__)
 class DocumentIntelligenceService:
     def __init__(self):
         # Azure Document Intelligence yapılandırması
-        self.endpoint = os.getenv("AZURE_DOCUMENT_ENDPOINT", "https://seraph-document.cognitiveservices.azure.com/")
-        self.key = os.getenv("AZURE_DOCUMENT_KEY", "7rDfrNqhvRl0bmMXVQw1rvcOXoN1FBcghe3KunshjFYlktTZGw9oJQQJ99BGACfhMk5XJ3w3AAALACOGaGf9")
+        self.endpoint = os.getenv("AZURE_DOCUMENT_ENDPOINT")
+        self.key = os.getenv("AZURE_DOCUMENT_KEY")
         
         # Client oluştur
         self.client = DocumentIntelligenceClient(

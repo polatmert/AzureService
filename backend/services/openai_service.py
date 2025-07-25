@@ -4,6 +4,9 @@ import logging
 import time
 from typing import List, Dict, Any, Optional
 from openai import AzureOpenAI, AsyncAzureOpenAI
+from dotenv import load_dotenv
+
+load_dotenv()
 
 logger = logging.getLogger("rfp_app.openai")
 
@@ -24,9 +27,9 @@ class OpenAIService:
             api_key: Azure OpenAI API anahtarı
             model: Kullanılacak model adı
         """
-        # API anahtarını ve endpoint'i doğrudan tanımla
-        self.api_key = "FPRujohqESgTY33hn85wMEIYIWuSFVVlvphfgBZ31DXWJdt3n7sIJQQJ99BGACfhMk5XJ3w3AAABACOGJLcR"
-        self.model = "gpt-4.1"
+        # API anahtarını .env dosyasından al
+        self.api_key = api_key or os.getenv("OPENAI_API_KEY")
+        self.model = model
         self.assistant_id = None  # Assistant ID'yi None yap, ihtiyaç halinde bulacağız
         self.endpoint = "https://seraph-openapi.openai.azure.com/"
         self.api_version = "2025-01-01-preview"
@@ -700,4 +703,4 @@ class OpenAIService:
         Sadece istenen analiz turlerini cevaba dahil et.
         """
         
-        return base_prompt 
+        return base_prompt

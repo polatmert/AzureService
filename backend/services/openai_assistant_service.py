@@ -4,6 +4,9 @@ from typing import Dict, Any, Optional
 import json
 import time
 from .openai_service import OpenAIService
+from dotenv import load_dotenv
+
+load_dotenv()
 
 logger = logging.getLogger(__name__)
 
@@ -13,7 +16,7 @@ class OpenAIAssistantService:
         self.openai_service = OpenAIService()
         
         # Assistant ID
-        self.assistant_id = "asst_MhSwILOybr3VZMDpBy6vJp36"
+        self.assistant_id = os.getenv("OPENAI_ASSISTANT_ID")
         
         logger.info(f"OpenAI Assistant Service başlatıldı, Assistant ID: {self.assistant_id}")
     

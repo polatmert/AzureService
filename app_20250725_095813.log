@@ -1,0 +1,24 @@
+2025-07-25 09:58:13,036 - rfp_app - INFO - Uygulama başlatılıyor... Log dosyası: app_20250725_095813.log
+2025-07-25 09:58:13,347 - rfp_app.openai - INFO - Azure OpenAI API bağlantısı kuruldu. Model: gpt-4.1, Endpoint: https://seraph-openapi.openai.azure.com/
+2025-07-25 09:58:13,821 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/assistants?api-version=2025-01-01-preview "HTTP/1.1 401 PermissionDenied"
+2025-07-25 09:58:13,822 - rfp_app.openai - ERROR - Assistant initialize hatası: Error code: 401 - {'error': {'code': '401', 'message': 'Access denied due to invalid subscription key or wrong API endpoint. Make sure to provide a valid key for an active subscription and use a correct regional API endpoint for your resource.'}}
+2025-07-25 09:58:13,822 - rfp_app.openai - WARNING - Assistant olmadan devam edilecek...
+2025-07-25 09:58:13,943 - backend.services.document_intelligence_service - INFO - Azure Document Intelligence service initialized
+2025-07-25 09:58:13,976 - rfp_app.openai - INFO - Azure OpenAI API bağlantısı kuruldu. Model: gpt-4.1, Endpoint: https://seraph-openapi.openai.azure.com/
+2025-07-25 09:58:14,231 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/assistants?api-version=2025-01-01-preview "HTTP/1.1 401 PermissionDenied"
+2025-07-25 09:58:14,231 - rfp_app.openai - ERROR - Assistant initialize hatası: Error code: 401 - {'error': {'code': '401', 'message': 'Access denied due to invalid subscription key or wrong API endpoint. Make sure to provide a valid key for an active subscription and use a correct regional API endpoint for your resource.'}}
+2025-07-25 09:58:14,231 - rfp_app.openai - WARNING - Assistant olmadan devam edilecek...
+2025-07-25 09:58:14,231 - backend.services.openai_assistant_service - INFO - OpenAI Assistant Service başlatıldı, Assistant ID: asst_MhSwILOybr3VZMDpBy6vJp36
+2025-07-25 09:58:14,261 - rfp_app - INFO - Uygulama 8050 portunda başlatılıyor...
+2025-07-25 09:58:15,855 - rfp_app.openai - INFO - Azure OpenAI API bağlantısı kuruldu. Model: gpt-4.1, Endpoint: https://seraph-openapi.openai.azure.com/
+2025-07-25 09:58:16,161 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/assistants?api-version=2025-01-01-preview "HTTP/1.1 401 PermissionDenied"
+2025-07-25 09:58:16,162 - rfp_app.openai - ERROR - Assistant initialize hatası: Error code: 401 - {'error': {'code': '401', 'message': 'Access denied due to invalid subscription key or wrong API endpoint. Make sure to provide a valid key for an active subscription and use a correct regional API endpoint for your resource.'}}
+2025-07-25 09:58:16,162 - rfp_app.openai - WARNING - Assistant olmadan devam edilecek...
+2025-07-25 09:58:16,182 - rfp_app.openai - INFO - Azure OpenAI Assistant API'ye istek gönderiliyor... Assistant ID: asst_Bocv8Da8OcjxlyZ9XdowGCC1
+2025-07-25 09:58:16,310 - httpx - INFO - HTTP Request: POST https://seraph-openapi.openai.azure.com/openai/threads?api-version=2025-01-01-preview "HTTP/1.1 401 PermissionDenied"
+2025-07-25 09:58:16,312 - rfp_app.openai - ERROR - Azure OpenAI Assistant API hatası: Error code: 401 - {'error': {'code': '401', 'message': 'Access denied due to invalid subscription key or wrong API endpoint. Make sure to provide a valid key for an active subscription and use a correct regional API endpoint for your resource.'}}
+2025-07-25 09:58:16,312 - rfp_app.openai - ERROR - Hata detayları: AuthenticationError
+2025-07-25 09:58:16,313 - rfp_app.openai - INFO - Fallback: Chat completion API kullanılıyor
+2025-07-25 09:58:16,596 - httpx - INFO - HTTP Request: POST https://seraph-openapi.openai.azure.com/openai/deployments/gpt-4.1/chat/completions?api-version=2025-01-01-preview "HTTP/1.1 401 PermissionDenied"
+2025-07-25 09:58:16,598 - rfp_app.openai - ERROR - Fallback yöntemi de başarısız oldu: Error code: 401 - {'error': {'code': '401', 'message': 'Access denied due to invalid subscription key or wrong API endpoint. Make sure to provide a valid key for an active subscription and use a correct regional API endpoint for your resource.'}}
+2025-07-25 09:58:16,611 - backend.api.document_routes - ERROR - DOCX oluşturma hatası: Expecting value: line 1 column 1 (char 0)
