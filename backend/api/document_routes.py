@@ -1223,13 +1223,15 @@ async def process_docx_file(
     process_documents_agent_id = "asst_Bocv8Da8OcjxlyZ9XdowGCC1"
     process_docx_response = await openai_service.use_assistant(
                 prompt=f"Aşağıda bir sözleşme metni var. Bu metni analiz et ve bana {agreement_create_schema} formatında, "
-                "tüm alanları dolduracak şekilde JSON döndür. Alan başlıklarını ve yapıyı koru, içerikleri metinden çıkar. "
-                "Sadece geçerli ve parse edilebilir JSON döndür. Sözleşme metni:\n\n"
-                f"{text_content}",
+        "tüm alanları dolduracak şekilde JSON döndür. Alan başlıklarını ve yapıyı koru, içerikleri metinden çıkar. "
+        "Sadece geçerli ve parse edilebilir valid bir JSON döndür. Döndüğün JSON'un başına veya herhangi bir yerine 'json\\n' ifadesini ekleme. "
+        "Sözleşme metni:\n\n"
+        f"{text_content}",
                 assistant_id=process_documents_agent_id
             )
-
     json_string = process_docx_response.get("response", "")
+    json_string = json_string.replace("json\n", "")
+
     docx_response = agreement_json_to_docx(json_string, output_path="agreement_output.docx")
     buffer = io.BytesIO()
     buffer.seek(0)
