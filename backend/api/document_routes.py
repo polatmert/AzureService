@@ -216,6 +216,7 @@ async def analyze_and_score_document(
                 # Sonucu çıkar
                 scoring_data = scoring_result.get("scoring_results", {})
                 overall_score = scoring_data.get("overall_score", 0)
+                detailed_feedback = scoring_data.get("detailed_feedback", "")
                 
                 logger.info(f"Tamamlandı: {filename} - Skor: {overall_score}")
                 
@@ -223,6 +224,7 @@ async def analyze_and_score_document(
                     "success": True,
                     "document_name": filename,
                     "score": overall_score,
+                    "detailed_feedback": detailed_feedback,
                     "message": f"Başarıyla skorlandı: {overall_score}/100"
                 }
                 
@@ -232,6 +234,7 @@ async def analyze_and_score_document(
                     "success": False,
                     "document_name": filename,
                     "score": 0,
+                    "detailed_feedback": "",
                     "error": str(e),
                     "message": f"İşlem başarısız: {str(e)}"
                 }
@@ -251,6 +254,7 @@ async def analyze_and_score_document(
                     "success": False,
                     "document_name": "Bilinmeyen",
                     "score": 0,
+                    "detailed_feedback": "",
                     "error": str(result),
                     "message": f"İşlem başarısız: {str(result)}"
                 })
@@ -562,6 +566,7 @@ async def score_document_analysis(
         # Skorlama sonucunu çıkar
         scoring_data = scoring_result.get("scoring_results", {})
         overall_score = scoring_data.get("overall_score", 0)
+        detailed_feedback = scoring_data.get("detailed_feedback", "")
         document_name = document_analysis.get("file_info", {}).get("filename", "Bilinmeyen Dosya")
         
         # Sadeleştirilmiş response
@@ -569,6 +574,7 @@ async def score_document_analysis(
             "success": True,
             "document_name": document_name,
             "score": overall_score,
+            "detailed_feedback": detailed_feedback,
             "message": f"{document_name} başarıyla skorlandı: {overall_score}/100"
         }
         
