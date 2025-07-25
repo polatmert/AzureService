@@ -1,5 +1,6 @@
 from fastapi import APIRouter, UploadFile, File, HTTPException, Depends
-from fastapi.responses import JSONResponse, StreamingResponse
+from fastapi.responses import JSONResponse, StreamingResponse, Response
+
 import logging
 from typing import List, Dict, Any, Optional
 import io
@@ -7,8 +8,9 @@ import tempfile
 import os
 from datetime import datetime
 
+import json
 from ..services.document_intelligence_service import document_intelligence_service
-from ..services.openai_assistant_service import openai_assistant_service
+from ..services.openai_assistant_service import openai_assistant_service, OpenAIService
 
 logger = logging.getLogger(__name__)
 
@@ -587,76 +589,7 @@ async def score_document_analysis(
         logger.error(f"Belge skorlama sırasında hata: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Skorlama başarısız: {str(e)}")
 
-@router.post("/process-docx")
-async def process_docx_file(
-    file: UploadFile = File(..., description="İşlenecek DOCX dosyası")
-):
-    """
-    DOCX dosyası alır ve işlenmiş DOCX dosyası döndürür
-    
-    - **file**: DOCX formatında belge dosyası
-    
-    Returns:
-        - İşlenmiş DOCX dosyası (StreamingResponse)
-    """
-    try:
-        logger.info(f"DOCX işleme isteği alındı: {file.filename}")
-        
-        # Dosya tipini kontrol et
-        if file.content_type != "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
-            raise HTTPException(
-                status_code=400, 
-                detail=f"Sadece DOCX dosyaları desteklenir. Gönderilen tip: {file.content_type}"
-            )
-        
-        # Dosya uzantısını kontrol et
-        if not file.filename.lower().endswith('.docx'):
-            raise HTTPException(
-                status_code=400, 
-                detail="Dosya .docx uzantısına sahip olmalıdır"
-            )
-        
-        # Dosyayı oku
-        file_content = await file.read()
-        
-        if len(file_content) == 0:
-            raise HTTPException(status_code=400, detail="Boş dosya yüklenemez")
-            
-        # Dosya boyutunu kontrol et (50MB limit)
-        max_file_size = 50 * 1024 * 1024  # 50MB
-        if len(file_content) > max_file_size:
-            raise HTTPException(
-                status_code=400, 
-                detail=f"Dosya çok büyük. Maksimum boyut: 50MB"
-            )
-            
-        logger.info(f"Dosya validasyonu başarılı: {file.filename}")
-        
-        # Dummy DOCX response oluştur
-        processed_docx = create_dummy_docx_response(file.filename, file_content)
-        
-        # Response için dosya adı oluştur
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        original_name = os.path.splitext(file.filename)[0]
-        response_filename = f"{original_name}_processed_{timestamp}.docx"
-        
-        logger.info(f"DOCX işleme başarıyla tamamlandı: {response_filename}")
-        
-        # StreamingResponse ile DOCX dosyasını döndür
-        return StreamingResponse(
-            io.BytesIO(processed_docx),
-            media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-            headers={
-                "Content-Disposition": f"attachment; filename={response_filename}",
-                "Content-Length": str(len(processed_docx))
-            }
-        )
-        
-    except HTTPException:
-        raise
-    except Exception as e:
-        logger.error(f"DOCX işleme sırasında hata: {str(e)}")
-        raise HTTPException(status_code=500, detail=f"DOCX işleme başarısız: {str(e)}")
+
 
 def create_dummy_docx_response(original_filename: str, original_content: bytes) -> bytes:
     """
@@ -783,3 +716,230 @@ def create_minimal_docx(filename: str) -> bytes:
     
     buffer.seek(0)
     return buffer.getvalue()
+
+@router.post("/process-docx")
+async def process_docx_file(
+    file: UploadFile = File(..., description="İşlenecek DOCX dosyası")
+):
+    openai_service = OpenAIService()
+
+    text_content = await file_to_string(file)
+    process_documents_agent_id = "asst_Bocv8Da8OcjxlyZ9XdowGCC1"
+    process_docx_response = await openai_service.use_assistant(
+                prompt=f"Aşağıda bir sözleşme metni var. Bu metni analiz et ve bana {agreement_create_schema} formatında, "
+                "tüm alanları dolduracak şekilde JSON döndür. Alan başlıklarını ve yapıyı koru, içerikleri metinden çıkar. "
+                "Sadece geçerli ve parse edilebilir JSON döndür. Sözleşme metni:\n\n"
+                f"{text_content}",
+                assistant_id=process_documents_agent_id
+            )
+    
+    json_string = process_docx_response.get("response", "")
+    docx_response = agreement_json_to_docx(json_string, output_path="agreement_output.docx")
+    buffer = io.BytesIO()
+    buffer.seek(0)
+    buffer_docx = io.BytesIO()
+    docx_response.save(buffer_docx)
+    buffer_docx.seek(0)
+
+        # PDF dosyasını döndür
+    return Response(
+        content=buffer_docx.getvalue(),
+        media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        headers={
+            "Content-Disposition": f"attachment; filename=proposal_{datetime.now().strftime('%Y%m%d_%H%M%S')}.docx"
+        }
+    )
+
+async def process_docx_file(
+    file: UploadFile = File(..., description="İşlenecek DOCX dosyası")
+    ):
+    openai_service = OpenAIService()
+
+    text_content = await file_to_string(file)
+    process_documents_agent_id = "asst_Bocv8Da8OcjxlyZ9XdowGCC1"
+    process_docx_response = await openai_service.use_assistant(
+                prompt=f"Aşağıda bir sözleşme metni var. Bu metni analiz et ve bana {agreement_create_schema} formatında, "
+                "tüm alanları dolduracak şekilde JSON döndür. Alan başlıklarını ve yapıyı koru, içerikleri metinden çıkar. "
+                "Sadece geçerli ve parse edilebilir JSON döndür. Sözleşme metni:\n\n"
+                f"{text_content}",
+                assistant_id=process_documents_agent_id
+            )
+    agreement_json = json.loads(process_docx_response)
+    docx_response = agreement_json_to_docx(agreement_json, output_path="agreement_output.docx")
+    buffer = io.BytesIO()
+    buffer.seek(0)
+    buffer_docx = io.BytesIO()
+    agreement_json_to_docx.save(buffer_docx)
+    buffer_docx.seek(0)
+
+        # PDF dosyasını döndür
+    return Response(
+        content=buffer_docx.getvalue(),
+        media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        headers={
+            "Content-Disposition": f"attachment; filename=proposal_{datetime.now().strftime('%Y%m%d_%H%M%S')}.docx"
+        }
+    )
+
+
+agreement_create_schema = """
+{
+    "contract_title": "Sözleşme Başlığı",
+    "date": "25.07.2025",
+    "parties": {
+        "buyer": "[Alıcı Adı]",
+        "supplier": "[Tedarikçi/Satıcı Adı]"
+    },
+    "sections": [
+        {
+            "title": "1. Tanımlar ve Taraflar",
+            "content": "Tarafların kimlikleri ve sözleşme kapsamındaki rollerini içerir."
+        },
+        {
+            "title": "2. Hizmet/Konu Tanımı",
+            "content": "Sözleşmenin konusu, kapsamı ve sağlanacak hizmetler veya ürünler genel olarak açıklanır."
+        },
+        {
+            "title": "3. Süre, Teslimat ve Garanti",
+            "content": "Sözleşmenin süresi, teslimat koşulları ve varsa garanti şartları belirtilir."
+        },
+        {
+            "title": "4. Ücretlendirme ve Ödeme",
+            "content": "Ücret, ödeme şekli ve takvimi ile ilgili genel bilgiler verilir."
+        },
+        {
+            "title": "5. Fikri Mülkiyet ve Haklar",
+            "content": "Sözleşme kapsamında oluşan fikri mülkiyet hakları ve tarafların hakları tanımlanır."
+        },
+        {
+            "title": "6. Yasal Uyum ve Gizlilik",
+            "content": "Tarafların yasal yükümlülükleri ve gizlilik hükümleri genel olarak belirtilir."
+        },
+        {
+            "title": "7. Alt Yüklenici ve Üçüncü Taraflar",
+            "content": "Alt yüklenici veya üçüncü taraf kullanımı ile ilgili genel hükümler eklenir."
+        },
+        {
+            "title": "8. Riskler ve Fesih",
+            "content": "Sözleşmenin feshi, riskler ve kapanış prosedürleri genel olarak tanımlanır."
+        },
+        {
+            "title": "9. Gerekçelendirme Notları",
+            "content": "Her madde altında, maddenin sözleşmede yer alma sebebi kısaca açıklanır."
+        }
+    ],
+    "signature_block": {
+        "buyer_signature": {
+            "title": "Alıcı",
+            "company": "[Alıcı Adı]",
+            "signature": "_________",
+            "stamp": "Kaşe",
+            "date": "_/_/2025"
+        },
+        "supplier_signature": {
+            "title": "Tedarikçi/Satıcı",
+            "company": "[Tedarikçi/Satıcı Adı]",
+            "signature": "_________",
+            "stamp": "Kaşe",
+            "date": "_/_/2025"
+        }
+    }
+}
+"""
+
+async def file_to_string(file: UploadFile) -> str:
+    """
+    UploadFile objesini string haline getirir.
+    TXT dosyaları için decode, DOCX için python-docx ile okuma, PDF için Document Intelligence ile analiz.
+    """
+    file_content = await file.read()
+    if len(file_content) == 0:
+        raise HTTPException(status_code=400, detail="Boş dosya işlenemez")
+
+    if file.content_type == "text/plain":
+        try:
+            return file_content.decode('utf-8')
+        except UnicodeDecodeError:
+            return file_content.decode('latin-1')
+
+    elif file.content_type == "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
+        from docx import Document
+        import io
+        doc_stream = io.BytesIO(file_content)
+        doc = Document(doc_stream)
+        full_text = []
+        for paragraph in doc.paragraphs:
+            if paragraph.text.strip():
+                full_text.append(paragraph.text)
+        for table in doc.tables:
+            for row in table.rows:
+                for cell in row.cells:
+                    if cell.text.strip():
+                        full_text.append(cell.text.strip())
+        return "\n".join(full_text)
+
+    elif file.content_type == "application/pdf":
+        # PDF için Document Intelligence kullan
+        analysis_result = await document_intelligence_service.analyze_document(
+            document_bytes=file_content,
+            content_type=file.content_type
+        )
+        content = analysis_result.get("content", "")
+        if not content:
+            paragraphs = analysis_result.get("paragraphs", [])
+            content = "\n".join([p.get("content", "") for p in paragraphs])
+        return content
+
+    else:
+        raise HTTPException(status_code=400, detail=f"Desteklenmeyen dosya tipi: {file.content_type}")
+
+def agreement_json_to_docx(agreement_json: dict, output_path: str = "agreement_output.docx"):
+    """
+    agreement_create_schema formatındaki JSON'dan DOCX sözleşme oluşturur.
+    Args:
+        agreement_json: Sözleşme JSON'u (dict)
+        output_path: Kaydedilecek DOCX dosya yolu
+    Returns:
+        docx.Document objesi
+    """
+    from docx import Document
+    from docx.shared import Pt
+    doc = Document()
+    json_data = json.loads(agreement_json)  # Asistan JSON döndürdüğü için doğrudan parse edilebilir
+
+    # Başlık
+    doc.add_heading(json_data.get("contract_title", "Sözleşme"), 0)
+    doc.add_paragraph(f"Tarih: {json_data.get('date', '')}")
+
+    # Taraflar
+    doc.add_heading("Taraflar", level=1)
+    parties = json_data.get("parties", {})
+    doc.add_paragraph(f"Alıcı: {parties.get('buyer', '')}")
+    doc.add_paragraph(f"Tedarikçi/Satıcı: {parties.get('supplier', '')}")
+
+    # Bölümler
+    doc.add_heading("Sözleşme Bölümleri", level=1)
+    for section in json_data.get("sections", []):
+        doc.add_heading(section.get("title", ""), level=2)
+        doc.add_paragraph(section.get("content", ""))
+
+    # İmzalar
+    doc.add_heading("İmzalar", level=1)
+    signature_block = json_data.get("signature_block", {})
+    buyer_sig = signature_block.get("buyer_signature", {})
+    supplier_sig = signature_block.get("supplier_signature", {})
+    doc.add_paragraph(f"{buyer_sig.get('title', '')}: {buyer_sig.get('company', '')}")
+    p_buyer = doc.add_paragraph()
+    p_buyer.add_run(f"İmza: {buyer_sig.get('signature', '')} | Kaşe: {buyer_sig.get('stamp', '')} | Tarih: {buyer_sig.get('date', '')}")
+    # Kaşe için sadece boşluk bırak
+    for _ in range(6):
+        doc.add_paragraph("")
+
+    doc.add_paragraph(f"{supplier_sig.get('title', '')}: {supplier_sig.get('company', '')}")
+    p_supplier = doc.add_paragraph()
+    p_supplier.add_run(f"İmza: {supplier_sig.get('signature', '')} | Kaşe: {supplier_sig.get('stamp', '')} | Tarih: {supplier_sig.get('date', '')}")
+    for _ in range(6):
+        doc.add_paragraph("")
+
+    doc.save(output_path)
+    return doc

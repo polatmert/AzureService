@@ -1,0 +1,43 @@
+2025-07-25 04:49:50,594 - rfp_app - INFO - Uygulama başlatılıyor... Log dosyası: app_20250725_044950.log
+2025-07-25 04:49:51,515 - rfp_app.openai - INFO - Azure OpenAI API bağlantısı kuruldu. Model: gpt-4.1, Endpoint: https://seraph-openapi.openai.azure.com/
+2025-07-25 04:49:52,303 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/assistants?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:49:52,378 - rfp_app.openai - INFO - Mevcut Assistant kullanılacak: asst_yJd60cUyj9ILgCTtASimmkOz
+2025-07-25 04:49:52,378 - rfp_app.openai - INFO - Assistant adı: risk raporu - Contract Risk Analyzer Agent
+2025-07-25 04:49:52,621 - backend.services.document_intelligence_service - INFO - Azure Document Intelligence service initialized
+2025-07-25 04:49:52,653 - rfp_app.openai - INFO - Azure OpenAI API bağlantısı kuruldu. Model: gpt-4.1, Endpoint: https://seraph-openapi.openai.azure.com/
+2025-07-25 04:49:52,996 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/assistants?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:49:53,052 - rfp_app.openai - INFO - Mevcut Assistant kullanılacak: asst_yJd60cUyj9ILgCTtASimmkOz
+2025-07-25 04:49:53,052 - rfp_app.openai - INFO - Assistant adı: risk raporu - Contract Risk Analyzer Agent
+2025-07-25 04:49:53,052 - backend.services.openai_assistant_service - INFO - OpenAI Assistant Service başlatıldı, Assistant ID: asst_MhSwILOybr3VZMDpBy6vJp36
+2025-07-25 04:49:53,111 - rfp_app - INFO - Uygulama 8050 portunda başlatılıyor...
+2025-07-25 04:49:56,930 - rfp_app.openai - INFO - Azure OpenAI API bağlantısı kuruldu. Model: gpt-4.1, Endpoint: https://seraph-openapi.openai.azure.com/
+2025-07-25 04:49:57,752 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/assistants?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:49:57,824 - rfp_app.openai - INFO - Mevcut Assistant kullanılacak: asst_yJd60cUyj9ILgCTtASimmkOz
+2025-07-25 04:49:57,824 - rfp_app.openai - INFO - Assistant adı: risk raporu - Contract Risk Analyzer Agent
+2025-07-25 04:49:57,845 - rfp_app.openai - INFO - Azure OpenAI Assistant API'ye istek gönderiliyor... Assistant ID: asst_Bocv8Da8OcjxlyZ9XdowGCC1
+2025-07-25 04:49:58,152 - httpx - INFO - HTTP Request: POST https://seraph-openapi.openai.azure.com/openai/threads?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:49:58,170 - rfp_app.openai - INFO - Thread oluşturuldu: thread_Y2ybutwNh698aUc8dqLl5DVh
+2025-07-25 04:49:58,348 - httpx - INFO - HTTP Request: POST https://seraph-openapi.openai.azure.com/openai/threads/thread_Y2ybutwNh698aUc8dqLl5DVh/messages?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:49:58,390 - rfp_app.openai - INFO - Mesaj thread'e eklendi: msg_RBPrLiSivDKPLQ1lH0LW3VCq
+2025-07-25 04:49:59,057 - httpx - INFO - HTTP Request: POST https://seraph-openapi.openai.azure.com/openai/threads/thread_Y2ybutwNh698aUc8dqLl5DVh/runs?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:49:59,100 - rfp_app.openai - INFO - Assistant çalıştırıldı: asst_Bocv8Da8OcjxlyZ9XdowGCC1
+2025-07-25 04:50:00,288 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Y2ybutwNh698aUc8dqLl5DVh/runs/run_5myYhssMHPjLA4LXif24rRjy?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:50:00,290 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-25 04:50:01,496 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Y2ybutwNh698aUc8dqLl5DVh/runs/run_5myYhssMHPjLA4LXif24rRjy?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:50:01,498 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-25 04:50:02,770 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Y2ybutwNh698aUc8dqLl5DVh/runs/run_5myYhssMHPjLA4LXif24rRjy?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:50:02,772 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-25 04:50:03,955 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Y2ybutwNh698aUc8dqLl5DVh/runs/run_5myYhssMHPjLA4LXif24rRjy?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:50:03,958 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-25 04:50:05,168 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Y2ybutwNh698aUc8dqLl5DVh/runs/run_5myYhssMHPjLA4LXif24rRjy?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:50:05,169 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-25 04:50:06,359 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Y2ybutwNh698aUc8dqLl5DVh/runs/run_5myYhssMHPjLA4LXif24rRjy?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:50:06,362 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-25 04:50:07,510 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Y2ybutwNh698aUc8dqLl5DVh/runs/run_5myYhssMHPjLA4LXif24rRjy?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:50:07,512 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-25 04:50:08,706 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Y2ybutwNh698aUc8dqLl5DVh/runs/run_5myYhssMHPjLA4LXif24rRjy?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:50:08,708 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-25 04:50:09,936 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Y2ybutwNh698aUc8dqLl5DVh/runs/run_5myYhssMHPjLA4LXif24rRjy?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:50:09,940 - rfp_app.openai - INFO - Run durumu: completed
+2025-07-25 04:50:10,147 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Y2ybutwNh698aUc8dqLl5DVh/messages?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:50:10,154 - rfp_app.openai - INFO - Assistant yanıtı alındı: 4142 karakter
