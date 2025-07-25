@@ -1,0 +1,332 @@
+2025-07-25 04:40:18,217 - rfp_app - INFO - Uygulama başlatılıyor... Log dosyası: app_20250725_044018.log
+2025-07-25 04:40:18,509 - rfp_app.openai - INFO - Azure OpenAI API bağlantısı kuruldu. Model: gpt-4.1, Endpoint: https://seraph-openapi.openai.azure.com/
+2025-07-25 04:40:20,115 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/assistants?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:40:20,128 - rfp_app.openai - INFO - Mevcut Assistant kullanılacak: asst_yJd60cUyj9ILgCTtASimmkOz
+2025-07-25 04:40:20,129 - rfp_app.openai - INFO - Assistant adı: risk raporu
+2025-07-25 04:40:20,250 - backend.services.document_intelligence_service - INFO - Azure Document Intelligence service initialized
+2025-07-25 04:40:20,282 - rfp_app.openai - INFO - Azure OpenAI API bağlantısı kuruldu. Model: gpt-4.1, Endpoint: https://seraph-openapi.openai.azure.com/
+2025-07-25 04:40:20,669 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/assistants?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:40:20,675 - rfp_app.openai - INFO - Mevcut Assistant kullanılacak: asst_yJd60cUyj9ILgCTtASimmkOz
+2025-07-25 04:40:20,675 - rfp_app.openai - INFO - Assistant adı: risk raporu
+2025-07-25 04:40:20,675 - backend.services.openai_assistant_service - INFO - OpenAI Assistant Service başlatıldı, Assistant ID: asst_MhSwILOybr3VZMDpBy6vJp36
+2025-07-25 04:40:20,719 - rfp_app - INFO - Uygulama 8050 portunda başlatılıyor...
+2025-07-25 04:41:15,302 - backend.api.document_routes - INFO - Belge karşılaştırma isteği alındı: RFP_Belgesi_2025-07-24 (5).docx vs RFP_Belgesi_2025-07-24 (6).docx
+2025-07-25 04:41:15,303 - backend.api.document_routes - INFO - Dosya validasyonu başarılı, Azure Document Intelligence ile analiz başlatılıyor...
+2025-07-25 04:41:15,303 - backend.services.document_intelligence_service - INFO - Döküman analizi başlatılıyor, content_type: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+2025-07-25 04:41:15,303 - backend.services.document_intelligence_service - INFO - Dosya boyutu: 38256 bytes
+2025-07-25 04:41:15,303 - backend.services.document_intelligence_service - INFO - DOCX dosyası tespit edildi, validasyon yapılıyor...
+2025-07-25 04:41:15,305 - backend.services.docx_converter - INFO - DOCX dosyası geçerli ZIP yapısına sahip
+2025-07-25 04:41:15,306 - backend.services.document_intelligence_service - INFO - DOCX validasyonu başarılı
+2025-07-25 04:41:15,306 - backend.services.document_intelligence_service - INFO - Azure Document Intelligence API'sine istek gönderiliyor...
+2025-07-25 04:41:15,306 - backend.services.document_intelligence_service - INFO - DOCX için prebuilt-read modeli kullanılıyor
+2025-07-25 04:41:15,308 - azure.core.pipeline.policies.http_logging_policy - INFO - Request URL: 'https://seraph-document.cognitiveservices.azure.com//documentintelligence/documentModels/prebuilt-read:analyze?api-version=REDACTED'
+Request method: 'POST'
+Request headers:
+    'content-type': 'application/json'
+    'Content-Length': '51028'
+    'Accept': 'application/json'
+    'x-ms-client-request-id': '73d63848-68f8-11f0-b05c-e67cfaf6ed36'
+    'User-Agent': 'azsdk-python-ai-documentintelligence/1.0.2 Python/3.13.5 (macOS-13.2.1-arm64-arm-64bit-Mach-O)'
+    'Ocp-Apim-Subscription-Key': 'REDACTED'
+A body is sent with the request
+2025-07-25 04:41:17,285 - azure.core.pipeline.policies.http_logging_policy - INFO - Response status: 202
+Response headers:
+    'Content-Length': '0'
+    'Operation-Location': 'REDACTED'
+    'x-envoy-upstream-service-time': 'REDACTED'
+    'apim-request-id': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'x-content-type-options': 'REDACTED'
+    'x-ms-region': 'REDACTED'
+    'Date': 'Fri, 25 Jul 2025 01:41:16 GMT'
+2025-07-25 04:41:17,285 - azure.core.pipeline.policies.http_logging_policy - INFO - Request URL: 'https://seraph-document.cognitiveservices.azure.com/documentintelligence/documentModels/prebuilt-read/analyzeResults/4cb9d5a0-e1c8-410d-b0f6-65a6c037085e?api-version=REDACTED'
+Request method: 'GET'
+Request headers:
+    'x-ms-client-request-id': '73d63848-68f8-11f0-b05c-e67cfaf6ed36'
+    'User-Agent': 'azsdk-python-ai-documentintelligence/1.0.2 Python/3.13.5 (macOS-13.2.1-arm64-arm-64bit-Mach-O)'
+    'Ocp-Apim-Subscription-Key': 'REDACTED'
+No body was attached to the request
+2025-07-25 04:41:17,487 - azure.core.pipeline.policies.http_logging_policy - INFO - Response status: 200
+Response headers:
+    'Content-Length': '34113'
+    'Content-Type': 'application/json; charset=utf-8'
+    'x-envoy-upstream-service-time': 'REDACTED'
+    'apim-request-id': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'x-content-type-options': 'REDACTED'
+    'x-ms-region': 'REDACTED'
+    'Date': 'Fri, 25 Jul 2025 01:41:16 GMT'
+2025-07-25 04:41:17,513 - backend.services.document_intelligence_service - INFO - Döküman analizi başarıyla tamamlandı
+2025-07-25 04:41:17,513 - backend.services.document_intelligence_service - INFO - Döküman analizi başlatılıyor, content_type: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+2025-07-25 04:41:17,513 - backend.services.document_intelligence_service - INFO - Dosya boyutu: 37822 bytes
+2025-07-25 04:41:17,514 - backend.services.document_intelligence_service - INFO - DOCX dosyası tespit edildi, validasyon yapılıyor...
+2025-07-25 04:41:17,520 - backend.services.docx_converter - INFO - DOCX dosyası geçerli ZIP yapısına sahip
+2025-07-25 04:41:17,520 - backend.services.document_intelligence_service - INFO - DOCX validasyonu başarılı
+2025-07-25 04:41:17,520 - backend.services.document_intelligence_service - INFO - Azure Document Intelligence API'sine istek gönderiliyor...
+2025-07-25 04:41:17,520 - backend.services.document_intelligence_service - INFO - DOCX için prebuilt-read modeli kullanılıyor
+2025-07-25 04:41:17,521 - azure.core.pipeline.policies.http_logging_policy - INFO - Request URL: 'https://seraph-document.cognitiveservices.azure.com//documentintelligence/documentModels/prebuilt-read:analyze?api-version=REDACTED'
+Request method: 'POST'
+Request headers:
+    'content-type': 'application/json'
+    'Content-Length': '50452'
+    'Accept': 'application/json'
+    'x-ms-client-request-id': '7527dac6-68f8-11f0-b05c-e67cfaf6ed36'
+    'User-Agent': 'azsdk-python-ai-documentintelligence/1.0.2 Python/3.13.5 (macOS-13.2.1-arm64-arm-64bit-Mach-O)'
+    'Ocp-Apim-Subscription-Key': 'REDACTED'
+A body is sent with the request
+2025-07-25 04:41:17,896 - azure.core.pipeline.policies.http_logging_policy - INFO - Response status: 202
+Response headers:
+    'Content-Length': '0'
+    'Operation-Location': 'REDACTED'
+    'x-envoy-upstream-service-time': 'REDACTED'
+    'apim-request-id': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'x-content-type-options': 'REDACTED'
+    'x-ms-region': 'REDACTED'
+    'Date': 'Fri, 25 Jul 2025 01:41:17 GMT'
+2025-07-25 04:41:17,897 - azure.core.pipeline.policies.http_logging_policy - INFO - Request URL: 'https://seraph-document.cognitiveservices.azure.com/documentintelligence/documentModels/prebuilt-read/analyzeResults/35c225db-5e48-438a-80a8-dd7501433a6f?api-version=REDACTED'
+Request method: 'GET'
+Request headers:
+    'x-ms-client-request-id': '7527dac6-68f8-11f0-b05c-e67cfaf6ed36'
+    'User-Agent': 'azsdk-python-ai-documentintelligence/1.0.2 Python/3.13.5 (macOS-13.2.1-arm64-arm-64bit-Mach-O)'
+    'Ocp-Apim-Subscription-Key': 'REDACTED'
+No body was attached to the request
+2025-07-25 04:41:18,024 - azure.core.pipeline.policies.http_logging_policy - INFO - Response status: 200
+Response headers:
+    'Content-Length': '23763'
+    'Content-Type': 'application/json; charset=utf-8'
+    'x-envoy-upstream-service-time': 'REDACTED'
+    'apim-request-id': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'x-content-type-options': 'REDACTED'
+    'x-ms-region': 'REDACTED'
+    'Date': 'Fri, 25 Jul 2025 01:41:17 GMT'
+2025-07-25 04:41:18,040 - backend.services.document_intelligence_service - INFO - Döküman analizi başarıyla tamamlandı
+2025-07-25 04:41:18,040 - backend.api.document_routes - INFO - Azure Document Intelligence analizi tamamlandı, Assistant ile karşılaştırma başlatılıyor...
+2025-07-25 04:41:18,089 - rfp_app.openai - INFO - Azure OpenAI API bağlantısı kuruldu. Model: gpt-4.1, Endpoint: https://seraph-openapi.openai.azure.com/
+2025-07-25 04:41:18,496 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/assistants?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:41:18,506 - rfp_app.openai - INFO - Mevcut Assistant kullanılacak: asst_yJd60cUyj9ILgCTtASimmkOz
+2025-07-25 04:41:18,507 - rfp_app.openai - INFO - Assistant adı: risk raporu
+2025-07-25 04:41:18,507 - rfp_app.openai - INFO - Azure OpenAI Assistant API'ye istek gönderiliyor... Assistant ID: asst_ypQ5qVFx9BTAMRLPHusd8MHS
+2025-07-25 04:41:19,229 - httpx - INFO - HTTP Request: POST https://seraph-openapi.openai.azure.com/openai/threads?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:41:19,234 - rfp_app.openai - INFO - Thread oluşturuldu: thread_wRxb0YoqqNT6IcfxSQKzlD06
+2025-07-25 04:41:19,456 - httpx - INFO - HTTP Request: POST https://seraph-openapi.openai.azure.com/openai/threads/thread_wRxb0YoqqNT6IcfxSQKzlD06/messages?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:41:19,474 - rfp_app.openai - INFO - Mesaj thread'e eklendi: msg_Smu4kbB3SkZaQSWHUHCmXmdc
+2025-07-25 04:41:19,732 - httpx - INFO - HTTP Request: POST https://seraph-openapi.openai.azure.com/openai/threads/thread_wRxb0YoqqNT6IcfxSQKzlD06/runs?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:41:19,744 - rfp_app.openai - INFO - Assistant çalıştırıldı: asst_ypQ5qVFx9BTAMRLPHusd8MHS
+2025-07-25 04:41:20,927 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_wRxb0YoqqNT6IcfxSQKzlD06/runs/run_pOVUPwYgBIHAJSBzKUSBUyq6?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:41:20,929 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-25 04:41:22,109 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_wRxb0YoqqNT6IcfxSQKzlD06/runs/run_pOVUPwYgBIHAJSBzKUSBUyq6?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:41:22,111 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-25 04:41:23,296 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_wRxb0YoqqNT6IcfxSQKzlD06/runs/run_pOVUPwYgBIHAJSBzKUSBUyq6?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:41:23,298 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-25 04:41:24,430 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_wRxb0YoqqNT6IcfxSQKzlD06/runs/run_pOVUPwYgBIHAJSBzKUSBUyq6?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:41:24,432 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-25 04:41:25,619 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_wRxb0YoqqNT6IcfxSQKzlD06/runs/run_pOVUPwYgBIHAJSBzKUSBUyq6?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:41:25,621 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-25 04:41:26,800 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_wRxb0YoqqNT6IcfxSQKzlD06/runs/run_pOVUPwYgBIHAJSBzKUSBUyq6?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:41:26,802 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-25 04:41:27,990 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_wRxb0YoqqNT6IcfxSQKzlD06/runs/run_pOVUPwYgBIHAJSBzKUSBUyq6?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:41:27,991 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-25 04:41:29,172 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_wRxb0YoqqNT6IcfxSQKzlD06/runs/run_pOVUPwYgBIHAJSBzKUSBUyq6?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:41:29,174 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-25 04:41:30,306 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_wRxb0YoqqNT6IcfxSQKzlD06/runs/run_pOVUPwYgBIHAJSBzKUSBUyq6?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:41:30,308 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-25 04:41:31,485 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_wRxb0YoqqNT6IcfxSQKzlD06/runs/run_pOVUPwYgBIHAJSBzKUSBUyq6?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:41:31,485 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-25 04:41:32,608 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_wRxb0YoqqNT6IcfxSQKzlD06/runs/run_pOVUPwYgBIHAJSBzKUSBUyq6?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:41:32,610 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-25 04:41:33,742 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_wRxb0YoqqNT6IcfxSQKzlD06/runs/run_pOVUPwYgBIHAJSBzKUSBUyq6?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:41:33,744 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-25 04:41:34,958 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_wRxb0YoqqNT6IcfxSQKzlD06/runs/run_pOVUPwYgBIHAJSBzKUSBUyq6?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:41:34,960 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-25 04:41:36,086 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_wRxb0YoqqNT6IcfxSQKzlD06/runs/run_pOVUPwYgBIHAJSBzKUSBUyq6?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:41:36,087 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-25 04:41:37,216 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_wRxb0YoqqNT6IcfxSQKzlD06/runs/run_pOVUPwYgBIHAJSBzKUSBUyq6?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:41:37,218 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-25 04:41:38,349 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_wRxb0YoqqNT6IcfxSQKzlD06/runs/run_pOVUPwYgBIHAJSBzKUSBUyq6?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:41:38,351 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-25 04:41:39,529 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_wRxb0YoqqNT6IcfxSQKzlD06/runs/run_pOVUPwYgBIHAJSBzKUSBUyq6?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:41:39,531 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-25 04:41:40,711 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_wRxb0YoqqNT6IcfxSQKzlD06/runs/run_pOVUPwYgBIHAJSBzKUSBUyq6?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:41:40,714 - rfp_app.openai - INFO - Run durumu: completed
+2025-07-25 04:41:40,869 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_wRxb0YoqqNT6IcfxSQKzlD06/messages?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:41:40,931 - rfp_app.openai - INFO - Assistant yanıtı alındı: 4956 karakter
+2025-07-25 04:41:40,932 - backend.api.document_routes - INFO - Belge karşılaştırma başarıyla tamamlandı
+2025-07-25 04:49:40,906 - backend.api.document_routes - INFO - Belge karşılaştırma isteği alındı: RFP_Belgesi_2025-07-24 (5).docx vs RFP_Belgesi_2025-07-24 (6).docx
+2025-07-25 04:49:40,906 - backend.api.document_routes - INFO - Dosya validasyonu başarılı, Azure Document Intelligence ile analiz başlatılıyor...
+2025-07-25 04:49:40,906 - backend.services.document_intelligence_service - INFO - Döküman analizi başlatılıyor, content_type: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+2025-07-25 04:49:40,907 - backend.services.document_intelligence_service - INFO - Dosya boyutu: 38256 bytes
+2025-07-25 04:49:40,907 - backend.services.document_intelligence_service - INFO - DOCX dosyası tespit edildi, validasyon yapılıyor...
+2025-07-25 04:49:40,907 - backend.services.docx_converter - INFO - DOCX dosyası geçerli ZIP yapısına sahip
+2025-07-25 04:49:40,907 - backend.services.document_intelligence_service - INFO - DOCX validasyonu başarılı
+2025-07-25 04:49:40,907 - backend.services.document_intelligence_service - INFO - Azure Document Intelligence API'sine istek gönderiliyor...
+2025-07-25 04:49:40,907 - backend.services.document_intelligence_service - INFO - DOCX için prebuilt-read modeli kullanılıyor
+2025-07-25 04:49:40,909 - azure.core.pipeline.policies.http_logging_policy - INFO - Request URL: 'https://seraph-document.cognitiveservices.azure.com//documentintelligence/documentModels/prebuilt-read:analyze?api-version=REDACTED'
+Request method: 'POST'
+Request headers:
+    'content-type': 'application/json'
+    'Content-Length': '51028'
+    'Accept': 'application/json'
+    'x-ms-client-request-id': 'a132c2b0-68f9-11f0-b05c-e67cfaf6ed36'
+    'User-Agent': 'azsdk-python-ai-documentintelligence/1.0.2 Python/3.13.5 (macOS-13.2.1-arm64-arm-64bit-Mach-O)'
+    'Ocp-Apim-Subscription-Key': 'REDACTED'
+A body is sent with the request
+2025-07-25 04:49:42,612 - azure.core.pipeline.policies.http_logging_policy - INFO - Response status: 202
+Response headers:
+    'Content-Length': '0'
+    'Operation-Location': 'REDACTED'
+    'x-envoy-upstream-service-time': 'REDACTED'
+    'apim-request-id': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'x-content-type-options': 'REDACTED'
+    'x-ms-region': 'REDACTED'
+    'Date': 'Fri, 25 Jul 2025 01:49:42 GMT'
+2025-07-25 04:49:42,614 - azure.core.pipeline.policies.http_logging_policy - INFO - Request URL: 'https://seraph-document.cognitiveservices.azure.com/documentintelligence/documentModels/prebuilt-read/analyzeResults/a9776545-c460-43c9-9d8e-36756924f1a1?api-version=REDACTED'
+Request method: 'GET'
+Request headers:
+    'x-ms-client-request-id': 'a132c2b0-68f9-11f0-b05c-e67cfaf6ed36'
+    'User-Agent': 'azsdk-python-ai-documentintelligence/1.0.2 Python/3.13.5 (macOS-13.2.1-arm64-arm-64bit-Mach-O)'
+    'Ocp-Apim-Subscription-Key': 'REDACTED'
+No body was attached to the request
+2025-07-25 04:49:42,710 - azure.core.pipeline.policies.http_logging_policy - INFO - Response status: 200
+Response headers:
+    'Content-Length': '106'
+    'Content-Type': 'application/json; charset=utf-8'
+    'retry-after': '1'
+    'x-envoy-upstream-service-time': 'REDACTED'
+    'apim-request-id': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'x-content-type-options': 'REDACTED'
+    'x-ms-region': 'REDACTED'
+    'Date': 'Fri, 25 Jul 2025 01:49:42 GMT'
+2025-07-25 04:49:43,715 - azure.core.pipeline.policies.http_logging_policy - INFO - Request URL: 'https://seraph-document.cognitiveservices.azure.com/documentintelligence/documentModels/prebuilt-read/analyzeResults/a9776545-c460-43c9-9d8e-36756924f1a1?api-version=REDACTED'
+Request method: 'GET'
+Request headers:
+    'x-ms-client-request-id': 'a132c2b0-68f9-11f0-b05c-e67cfaf6ed36'
+    'User-Agent': 'azsdk-python-ai-documentintelligence/1.0.2 Python/3.13.5 (macOS-13.2.1-arm64-arm-64bit-Mach-O)'
+    'Ocp-Apim-Subscription-Key': 'REDACTED'
+No body was attached to the request
+2025-07-25 04:49:43,890 - azure.core.pipeline.policies.http_logging_policy - INFO - Response status: 200
+Response headers:
+    'Content-Length': '34113'
+    'Content-Type': 'application/json; charset=utf-8'
+    'x-envoy-upstream-service-time': 'REDACTED'
+    'apim-request-id': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'x-content-type-options': 'REDACTED'
+    'x-ms-region': 'REDACTED'
+    'Date': 'Fri, 25 Jul 2025 01:49:43 GMT'
+2025-07-25 04:49:43,909 - backend.services.document_intelligence_service - INFO - Döküman analizi başarıyla tamamlandı
+2025-07-25 04:49:43,910 - backend.services.document_intelligence_service - INFO - Döküman analizi başlatılıyor, content_type: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+2025-07-25 04:49:43,910 - backend.services.document_intelligence_service - INFO - Dosya boyutu: 37822 bytes
+2025-07-25 04:49:43,910 - backend.services.document_intelligence_service - INFO - DOCX dosyası tespit edildi, validasyon yapılıyor...
+2025-07-25 04:49:43,910 - backend.services.docx_converter - INFO - DOCX dosyası geçerli ZIP yapısına sahip
+2025-07-25 04:49:43,910 - backend.services.document_intelligence_service - INFO - DOCX validasyonu başarılı
+2025-07-25 04:49:43,910 - backend.services.document_intelligence_service - INFO - Azure Document Intelligence API'sine istek gönderiliyor...
+2025-07-25 04:49:43,910 - backend.services.document_intelligence_service - INFO - DOCX için prebuilt-read modeli kullanılıyor
+2025-07-25 04:49:43,911 - azure.core.pipeline.policies.http_logging_policy - INFO - Request URL: 'https://seraph-document.cognitiveservices.azure.com//documentintelligence/documentModels/prebuilt-read:analyze?api-version=REDACTED'
+Request method: 'POST'
+Request headers:
+    'content-type': 'application/json'
+    'Content-Length': '50452'
+    'Accept': 'application/json'
+    'x-ms-client-request-id': 'a2fce9a4-68f9-11f0-b05c-e67cfaf6ed36'
+    'User-Agent': 'azsdk-python-ai-documentintelligence/1.0.2 Python/3.13.5 (macOS-13.2.1-arm64-arm-64bit-Mach-O)'
+    'Ocp-Apim-Subscription-Key': 'REDACTED'
+A body is sent with the request
+2025-07-25 04:49:44,171 - azure.core.pipeline.policies.http_logging_policy - INFO - Response status: 202
+Response headers:
+    'Content-Length': '0'
+    'Operation-Location': 'REDACTED'
+    'x-envoy-upstream-service-time': 'REDACTED'
+    'apim-request-id': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'x-content-type-options': 'REDACTED'
+    'x-ms-region': 'REDACTED'
+    'Date': 'Fri, 25 Jul 2025 01:49:44 GMT'
+2025-07-25 04:49:44,173 - azure.core.pipeline.policies.http_logging_policy - INFO - Request URL: 'https://seraph-document.cognitiveservices.azure.com/documentintelligence/documentModels/prebuilt-read/analyzeResults/0daad893-6857-4537-8bc4-f3477b451186?api-version=REDACTED'
+Request method: 'GET'
+Request headers:
+    'x-ms-client-request-id': 'a2fce9a4-68f9-11f0-b05c-e67cfaf6ed36'
+    'User-Agent': 'azsdk-python-ai-documentintelligence/1.0.2 Python/3.13.5 (macOS-13.2.1-arm64-arm-64bit-Mach-O)'
+    'Ocp-Apim-Subscription-Key': 'REDACTED'
+No body was attached to the request
+2025-07-25 04:49:44,266 - azure.core.pipeline.policies.http_logging_policy - INFO - Response status: 200
+Response headers:
+    'Content-Length': '106'
+    'Content-Type': 'application/json; charset=utf-8'
+    'retry-after': '1'
+    'x-envoy-upstream-service-time': 'REDACTED'
+    'apim-request-id': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'x-content-type-options': 'REDACTED'
+    'x-ms-region': 'REDACTED'
+    'Date': 'Fri, 25 Jul 2025 01:49:44 GMT'
+2025-07-25 04:49:45,270 - azure.core.pipeline.policies.http_logging_policy - INFO - Request URL: 'https://seraph-document.cognitiveservices.azure.com/documentintelligence/documentModels/prebuilt-read/analyzeResults/0daad893-6857-4537-8bc4-f3477b451186?api-version=REDACTED'
+Request method: 'GET'
+Request headers:
+    'x-ms-client-request-id': 'a2fce9a4-68f9-11f0-b05c-e67cfaf6ed36'
+    'User-Agent': 'azsdk-python-ai-documentintelligence/1.0.2 Python/3.13.5 (macOS-13.2.1-arm64-arm-64bit-Mach-O)'
+    'Ocp-Apim-Subscription-Key': 'REDACTED'
+No body was attached to the request
+2025-07-25 04:49:45,393 - azure.core.pipeline.policies.http_logging_policy - INFO - Response status: 200
+Response headers:
+    'Content-Length': '23763'
+    'Content-Type': 'application/json; charset=utf-8'
+    'x-envoy-upstream-service-time': 'REDACTED'
+    'apim-request-id': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'x-content-type-options': 'REDACTED'
+    'x-ms-region': 'REDACTED'
+    'Date': 'Fri, 25 Jul 2025 01:49:45 GMT'
+2025-07-25 04:49:45,407 - backend.services.document_intelligence_service - INFO - Döküman analizi başarıyla tamamlandı
+2025-07-25 04:49:45,408 - backend.api.document_routes - INFO - Azure Document Intelligence analizi tamamlandı, Assistant ile karşılaştırma başlatılıyor...
+2025-07-25 04:49:45,456 - rfp_app.openai - INFO - Azure OpenAI API bağlantısı kuruldu. Model: gpt-4.1, Endpoint: https://seraph-openapi.openai.azure.com/
+2025-07-25 04:49:46,033 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/assistants?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:49:46,089 - rfp_app.openai - INFO - Mevcut Assistant kullanılacak: asst_yJd60cUyj9ILgCTtASimmkOz
+2025-07-25 04:49:46,089 - rfp_app.openai - INFO - Assistant adı: risk raporu - Contract Risk Analyzer Agent
+2025-07-25 04:49:46,089 - rfp_app.openai - INFO - Azure OpenAI Assistant API'ye istek gönderiliyor... Assistant ID: asst_ypQ5qVFx9BTAMRLPHusd8MHS
+2025-07-25 04:49:46,229 - httpx - INFO - HTTP Request: POST https://seraph-openapi.openai.azure.com/openai/threads?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:49:46,231 - rfp_app.openai - INFO - Thread oluşturuldu: thread_Es7YESnHenu0J3V1cIUslo6C
+2025-07-25 04:49:46,449 - httpx - INFO - HTTP Request: POST https://seraph-openapi.openai.azure.com/openai/threads/thread_Es7YESnHenu0J3V1cIUslo6C/messages?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:49:46,454 - rfp_app.openai - INFO - Mesaj thread'e eklendi: msg_Uv3Sh2DftXumnpgajGccwF9t
+2025-07-25 04:49:46,707 - httpx - INFO - HTTP Request: POST https://seraph-openapi.openai.azure.com/openai/threads/thread_Es7YESnHenu0J3V1cIUslo6C/runs?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:49:46,709 - rfp_app.openai - INFO - Assistant çalıştırıldı: asst_ypQ5qVFx9BTAMRLPHusd8MHS
+2025-07-25 04:49:47,883 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Es7YESnHenu0J3V1cIUslo6C/runs/run_3oLDeokhLUth667WAP1DThmP?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:49:47,885 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-25 04:49:49,060 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Es7YESnHenu0J3V1cIUslo6C/runs/run_3oLDeokhLUth667WAP1DThmP?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:49:49,061 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-25 04:49:50,260 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Es7YESnHenu0J3V1cIUslo6C/runs/run_3oLDeokhLUth667WAP1DThmP?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:49:50,261 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-25 04:49:51,430 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Es7YESnHenu0J3V1cIUslo6C/runs/run_3oLDeokhLUth667WAP1DThmP?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:49:51,432 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-25 04:49:52,593 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Es7YESnHenu0J3V1cIUslo6C/runs/run_3oLDeokhLUth667WAP1DThmP?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:49:52,595 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-25 04:49:53,773 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Es7YESnHenu0J3V1cIUslo6C/runs/run_3oLDeokhLUth667WAP1DThmP?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:49:53,775 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-25 04:49:54,911 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Es7YESnHenu0J3V1cIUslo6C/runs/run_3oLDeokhLUth667WAP1DThmP?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:49:54,913 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-25 04:49:56,094 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Es7YESnHenu0J3V1cIUslo6C/runs/run_3oLDeokhLUth667WAP1DThmP?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:49:56,096 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-25 04:49:57,274 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Es7YESnHenu0J3V1cIUslo6C/runs/run_3oLDeokhLUth667WAP1DThmP?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:49:57,275 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-25 04:49:58,476 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Es7YESnHenu0J3V1cIUslo6C/runs/run_3oLDeokhLUth667WAP1DThmP?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:49:58,477 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-25 04:49:59,612 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Es7YESnHenu0J3V1cIUslo6C/runs/run_3oLDeokhLUth667WAP1DThmP?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:49:59,614 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-25 04:50:00,743 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Es7YESnHenu0J3V1cIUslo6C/runs/run_3oLDeokhLUth667WAP1DThmP?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:50:00,745 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-25 04:50:02,229 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Es7YESnHenu0J3V1cIUslo6C/runs/run_3oLDeokhLUth667WAP1DThmP?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:50:02,231 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-25 04:50:03,371 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Es7YESnHenu0J3V1cIUslo6C/runs/run_3oLDeokhLUth667WAP1DThmP?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:50:03,372 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-25 04:50:04,650 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Es7YESnHenu0J3V1cIUslo6C/runs/run_3oLDeokhLUth667WAP1DThmP?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:50:04,652 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-25 04:50:05,821 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Es7YESnHenu0J3V1cIUslo6C/runs/run_3oLDeokhLUth667WAP1DThmP?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:50:05,823 - rfp_app.openai - INFO - Run durumu: in_progress
+2025-07-25 04:50:07,020 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Es7YESnHenu0J3V1cIUslo6C/runs/run_3oLDeokhLUth667WAP1DThmP?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:50:07,021 - rfp_app.openai - INFO - Run durumu: completed
+2025-07-25 04:50:07,171 - httpx - INFO - HTTP Request: GET https://seraph-openapi.openai.azure.com/openai/threads/thread_Es7YESnHenu0J3V1cIUslo6C/messages?api-version=2025-01-01-preview "HTTP/1.1 200 OK"
+2025-07-25 04:50:07,181 - rfp_app.openai - INFO - Assistant yanıtı alındı: 5965 karakter
+2025-07-25 04:50:07,181 - backend.api.document_routes - INFO - Belge karşılaştırma başarıyla tamamlandı
